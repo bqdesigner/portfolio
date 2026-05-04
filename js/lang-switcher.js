@@ -24,6 +24,7 @@
     'scroll.hint': 'Scroll to view',
     'projects.label.title': 'Selected cases',
     'projects.label.year': '2023 → 2025',
+    'projects.label.count': '— Projects / 05',
     'about.tagline': 'Between execution and strategy.',
     'about.label.title': 'Who is Bruno',
     'about.label.sub': '12 years doing design',
@@ -147,6 +148,11 @@
       'case.solucao.p3': 'The results validated both the conversion mechanics and the subscription\'s perceived value. The defined model was a monthly subscription with exclusive benefits, priced from dedicated willingness-to-pay research.',
       'case.resultados': 'Results',
       'case.resultados.p1': 'Over 100,000 VIP subscriptions sold, generating annual revenue of nearly R$100 million — transforming the driver app from a cost center into one of Fretebras\' main revenue sources.',
+      'next.title': 'Reducing freight registration and publishing time by up to 70%'
+    },
+    'case-playground.html': {
+      'case.title': 'Playground',
+      'case.desc': 'Explorations of various works done over the years.',
       'next.title': 'Reducing freight registration and publishing time by up to 70%'
     }
   };
