@@ -7,6 +7,7 @@ const SITE = 'https://brunoqueiros.com';
 
 const NAV = [
   { label: 'Trabalhos', href: `${SITE}/#trabalhos` },
+  { label: 'Playground', href: `${SITE}/case-playground` },
   { label: 'Contato', href: `${SITE}/#contato` },
   { label: 'Blog', href: '/blog', active: true },
   { label: 'Manda freelas', href: `${SITE}/manda-freelas`, tag: 'Breve' },
