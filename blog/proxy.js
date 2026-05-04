@@ -1,11 +1,18 @@
 import { NextResponse } from 'next/server';
+import { deriveSessionToken, timingSafeEqual } from './lib/auth.js';
 
-export function proxy(request) {
+export async function proxy(request) {
+  const expected = process.env.ADMIN_PASSWORD;
   const token = request.cookies.get('admin_token')?.value;
-  const isValid = token === process.env.ADMIN_PASSWORD;
+
+  let isValid = false;
+  if (expected && token) {
+    const expectedToken = await deriveSessionToken(expected);
+    isValid = timingSafeEqual(token, expectedToken);
+  }
 
   if (!isValid) {
-    const loginUrl = new URL('/admin/login', request.url);
+    const loginUrl = new URL('/blog/admin/login', request.url);
     return NextResponse.redirect(loginUrl);
   }
 

@@ -1,15 +1,21 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import { deriveSessionToken, timingSafeEqual } from '../../../../lib/auth.js';
 
 export async function POST(request) {
-  const { password } = await request.json();
+  const expected = process.env.ADMIN_PASSWORD;
+  if (!expected) {
+    return NextResponse.json({ error: 'Server misconfigured' }, { status: 500 });
+  }
 
-  if (password !== process.env.ADMIN_PASSWORD) {
+  const { password } = await request.json();
+  if (typeof password !== 'string' || !timingSafeEqual(password, expected)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
+  const token = await deriveSessionToken(expected);
   const cookieStore = await cookies();
-  cookieStore.set('admin_token', process.env.ADMIN_PASSWORD, {
+  cookieStore.set('admin_token', token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'strict',
