@@ -25,7 +25,7 @@
   <meta name="theme-color" content="#FFFFFF" />
   <link rel="stylesheet" href="css/core.css" />
   <link rel="stylesheet" href="css/manda-freelas.css" />
-  <script>(function(){try{localStorage.removeItem('theme');}catch(e){}document.documentElement.setAttribute('data-theme','dark');var meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.setAttribute('content','#191819');})();</script>
+  <script>(function(){try{var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);var meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.setAttribute('content',t==='dark'?'#191819':'#FFFFFF');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 </head>
 <body>
 

@@ -29,9 +29,11 @@
   <meta name="theme-color" content="#FFFFFF" />
   <link rel="stylesheet" href="css/core.css" />
   <link rel="stylesheet" href="css/index.css" />
-  <script>(function(){try{localStorage.removeItem('theme');}catch(e){}document.documentElement.setAttribute('data-theme','dark');var meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.setAttribute('content','#191819');})();</script>
+  <script>(function(){try{var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);var meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.setAttribute('content',t==='dark'?'#191819':'#FFFFFF');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 </head>
 <body>
+
+  <div id="dot-pattern" class="dot-pattern" aria-hidden="true"></div>
 
   <!-- SKIP LINK -->
   <a href="#trabalhos" class="skip-link" data-i18n="skip">Pular para o conteúdo</a>
@@ -258,6 +260,7 @@
   <script src="js/header.js"></script>
   <script src="js/main.js"></script>
   <script src="js/lang-switcher.js"></script>
+  <script src="js/dot-pattern.js"></script>
 
 </body>
 </html>

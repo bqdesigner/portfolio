@@ -846,7 +846,7 @@ a {
 @media (max-width: 1090px) {
   .header {
     padding: 24px;
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 0;
   }
 
@@ -862,8 +862,6 @@ a {
     background: var(--color-light);
     border: 1px solid var(--color-low);
     border-radius: 500px;
-    margin-left: auto;
-    margin-right: 16px;
   }
 
   .header--scrolled .header-controls {
@@ -908,7 +906,6 @@ a {
   .hamburger {
     display: flex;
     order: 4;
-    margin-left: auto;
     background: var(--color-light);
     border: 1px solid var(--color-low);
     border-radius: 500px;

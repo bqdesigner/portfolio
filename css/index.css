@@ -1,3 +1,33 @@
+/* ===== DOT PATTERN BG ===== */
+body:has(.dot-pattern) { background: transparent; }
+
+:root {
+  --dot-glow: #9CA3AF;
+  --dot-base: #D0D0D0;
+  --dot-size: 2;
+  --dot-gap: 24;
+  --dot-proximity: 120;
+  --dot-glow-intensity: 0.5;
+  --dot-wave-speed: 0.5;
+}
+[data-theme="dark"] { --dot-glow: #6C757D; --dot-base: #2A2A2A; }
+
+.dot-pattern {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: var(--color-light);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.dot-pattern canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
 /* ===== HERO ===== */
 .hero {
   min-height: 100vh;
@@ -564,12 +594,21 @@
 @media (max-width: 1090px) {
   .hero {
     padding: 0 24px;
-    min-height: 80vh;
+    min-height: 100vh;
   }
 
   .hero-text {
     font-size: 24px;
   }
+}
+
+@media (min-width: 640px) and (max-width: 1090px) {
+  .hero-text {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 1090px) {
 
   .typewriter-cursor {
     height: 0.9em;
