@@ -25,10 +25,6 @@ export default async function BlogPage() {
   return (
     <main>
       <section className={styles.hero}>
-        <div className={styles.heroLabel}>
-          <span className={styles.heroLabelDot} />
-          Textos sobre design, carreira e produto
-        </div>
         <h1 className={styles.heroTitle}>
           Ideias que<br /><em>valem seu tempo.</em>
         </h1>

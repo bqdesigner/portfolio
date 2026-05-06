@@ -91,6 +91,8 @@
 .mobileToc { display: none; }
 .mobileShare { display: none; }
 @media (max-width: 860px) {
+  .articleHero { padding-bottom: 16px; }
+  .articleMeta { margin-bottom: 24px; }
   .articleLayout { grid-template-columns: 1fr; gap: 0; }
   .articleSidebar { display: none; }
   .mobileToc {

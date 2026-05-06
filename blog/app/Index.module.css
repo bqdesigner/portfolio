@@ -31,7 +31,7 @@
 .heroTitle em {
   font-style: italic;
   font-weight: 400;
-  color: var(--color-accent);
+  color: var(--color-dark);
 }
 .heroSub {
   font-size: clamp(16px, 1.3vw, 20px);

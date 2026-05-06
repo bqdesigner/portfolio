@@ -7,7 +7,6 @@ import styles from './Article.module.css';
 import ReadingProgress from './ReadingProgress';
 import Sidebar from './Sidebar';
 import BackToTop from './BackToTop';
-import Share from './Share';
 
 export const revalidate = 60;
 
@@ -100,10 +99,6 @@ export default async function PostPage({ params }) {
           <article className={styles.articleBody}>
             <NotionBlocks blocks={blocks} />
           </article>
-          <div className={styles.mobileShare}>
-            <span className={styles.sidebarLabel}>— Compartilhar</span>
-            <Share title={post.title} />
-          </div>
         </div>
 
         <Sidebar toc={toc} tags={post.tags} title={post.title} />
