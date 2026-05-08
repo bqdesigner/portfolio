@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IA no Processo de Product Design — Bruno Queirós</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23fff'/%3E%3Cg transform='translate(16,12)'%3E%3Cpath d='M8.51 8.53c.01.48-.09.95-.3 1.38a3.6 3.6 0 01-.81 1.09c-.34.31-.74.55-1.17.71-.45.17-.92.26-1.4.26L0 11.95V0h4.3c.49 0 .98.07 1.44.23.43.14.82.37 1.16.67.33.3.6.67.77 1.08.19.45.28.94.28 1.43 0 .45-.1.89-.3 1.3a3.2 3.2 0 01-.79 1.06c.26.13.49.3.69.49.2.2.38.42.52.67.14.24.25.5.33.77.07.27.11.55.11.83zM5.66 3.45c.01-.26-.05-.52-.17-.75a1.5 1.5 0 00-.44-.58 1.7 1.7 0 00-.64-.31 2.8 2.8 0 00-.75-.1H2.32v3.29l.67.01h.69c.25 0 .5-.03.74-.09.23-.05.45-.15.64-.28.18-.13.34-.3.44-.5.12-.23.17-.48.17-.72zm.45 4.94c0-.24-.05-.47-.14-.69a1.5 1.5 0 00-.39-.53 1.7 1.7 0 00-.57-.34 2.5 2.5 0 00-.7-.12c-.34-.01-.67-.01-1-.01s-.67 0-1 0v3.3h1.73c.25 0 .5-.03.74-.09.24-.06.46-.15.65-.29.19-.13.35-.31.47-.51.12-.23.18-.48.17-.72z' fill='%23191819'/%3E%3Crect x='15' y='6' width='1.6' height='26.2' rx='.8' transform='rotate(44.92 15.8 19.1)' fill='%23191819'/%3E%3Cg transform='translate(19.5,27.5)'%3E%3Cpath d='M12.59 6.2c0 .68-.11 1.36-.34 2.01-.22.63-.55 1.22-.96 1.74l1.19 1.18-1.37 1.37-1.22-1.24a5.9 5.9 0 01-1.67.84 6.3 6.3 0 01-1.93.3c-.84.01-1.67-.16-2.44-.49a6.1 6.1 0 01-2-1.33 6.1 6.1 0 01-1.35-1.96A6.2 6.2 0 010 6.2c0-.83.17-1.65.49-2.41a6.1 6.1 0 011.35-1.97A6.1 6.1 0 013.85.49 6.3 6.3 0 016.29 0c.84 0 1.67.17 2.45.49a6.1 6.1 0 012.01 1.33 6.1 6.1 0 011.35 1.97c.33.76.5 1.58.49 2.41zm-2.26 0c0-.53-.11-1.06-.32-1.55a4.1 4.1 0 00-.87-1.28 4.1 4.1 0 00-1.28-.87 4.1 4.1 0 00-1.57-.32c-.54 0-1.07.11-1.57.32-.48.21-.92.5-1.28.87a4.1 4.1 0 00-.87 1.28 4.1 4.1 0 00-.32 1.55c0 .53.11 1.06.32 1.55.2.48.5.92.87 1.28.37.37.81.66 1.28.87.49.22 1.03.32 1.57.32.37 0 .73-.05 1.08-.15.34-.1.67-.24.98-.42l-1.12-1.09 1.37-1.37 1.11 1.14a3.9 3.9 0 00.63-2.12z' fill='%23191819'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../css/core.css" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ══ DECK ═════════════════════════════════════════════════════════ -->
+<main class="deck" id="deck">
+
+  <!-- 1 · COVER -->
+  <section class="slide slide-cover" data-time="—" data-notes="Abertura. Olhar pra plateia, respirar. Esta apresentação é sobre julgamento amplificado, não substituído.">
+    <p class="cover-eyebrow">Talk · IA no processo de Product Design</p>
+    <div class="hero-text">
+      <p>Vamos falar de <span class="hero-accent">IA no processo</span> de Product Design.</p>
+      <br>
+      <p class="muted">Não como hype, mas como ferramenta que amplifica nossa atuação.</p>
+    </div>
+    <div class="cover-meta">
+      <strong>Bruno Queirós</strong>
+      <span class="dot">·</span>
+      <span>Stone · Senior Product Designer</span>
+      <span class="dot">·</span>
+      <span>40min + 20min Q&amp;A</span>
+    </div>
+  </section>
+
+  <!-- 2 · TESE -->
+  <section class="slide slide-quote slide-tese" data-time="—" data-notes="Tese central. Pausa antes e depois. Slop = output gerado por IA com aparência de qualidade mas sem fundamento.">
+    <p class="quote-eyebrow">Tese central</p>
+    <div class="tese-grid">
+      <div class="tese-main">
+        <blockquote>
+          IA não substitui o designer.<br>
+          <span class="quote-emph">Potencializa nossa atuação.</span>
+        </blockquote>
+        <p class="quote-foot">Quem tem repertório + contexto + processo, multiplica.<br>Quem não tem, gera <em>slop</em> mais rápido.</p>
+      </div>
+      <aside class="tese-aside">
+        <span class="aside-label">O que é slop?</span>
+        <p>Conteúdo gerado por IA com aparência de qualidade, mas sem fundamento, contexto ou direção.</p>
+        <p>Texto inflado, design genérico, decisão sem evidência. <strong>Volume sem valor.</strong></p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 3 · QUEM SOU -->
+  <section class="slide" data-time="2min" data-notes="2min. Stack: VSCode→Cursor, Gemini, Perplexity, GitHub. Por quê terminal: potencializa e automatiza trabalho pesado.">
+    <header class="section-label">
+      <span>02 / Quem sou</span>
+      <h2 class="sl-title">Brunão · 10+ anos de Product Design</h2>
+      <span>2min</span>
+    </header>
+    <div class="two-col">
+      <div class="card">
+        <h3 class="card-title">Hoje</h3>
+        <ul class="bullets">
+          <li>Senior Product Designer na <strong>Stone</strong></li>
+          <li>Jornada de Renegociação de Crédito</li>
+          <li>10+ anos em Product Design</li>
+          <li>Foco: processo + IA aplicada</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 class="card-title">Stack atual</h3>
+        <div class="badges">
+          <span class="badge">VSCode → Cursor</span>
+          <span class="badge">Claude Code</span>
+          <span class="badge">Gemini</span>
+          <span class="badge">Perplexity</span>
+          <span class="badge">GitHub</span>
+          <span class="badge">Terminal</span>
+        </div>
+        <p class="card-foot">Por quê terminal? <strong style="color:var(--color-deep)">Potencializa e automatiza o trabalho pesado.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · MINDSET -->
+  <section class="slide" data-time="5min" data-notes="5min. Cada princípio = uma frase. Não ler tudo — comentar com exemplo curto. 'Contexto > prompt bonito' é o mais importante.">
+    <header class="section-label">
+      <span>03 / Mindset antes da ferramenta</span>
+      <h2 class="sl-title">4 princípios que vêm antes do prompt</h2>
+      <span>5min</span>
+    </header>
+    <div class="grid-4">
+      <div class="card num-card">
+        <span class="num">01</span>
+        <h3 class="card-title">Contexto &gt; prompt bonito</h3>
+        <p>Bom input carrega contexto, insumos, não-ambiguidades. Prompt bonito sem contexto = output bonito sem fundamento.</p>
+      </div>
+      <div class="card num-card">
+        <span class="num">02</span>
+        <h3 class="card-title">Iteração &gt; one-shot</h3>
+        <p>Primeiro output é matéria-prima, não entregável. Refine em ciclos curtos.</p>
+      </div>
+      <div class="card num-card">
+        <span class="num">03</span>
+        <h3 class="card-title">Validar sempre</h3>
+        <p>IA confiante ≠ IA correta. Você é o filtro. Sem isso, escala erro.</p>
+      </div>
+      <div class="card num-card">
+        <span class="num">04</span>
+        <h3 class="card-title">Taste é insubstituível</h3>
+        <p>Julgamento estético, contexto político, leitura de stakeholder — IA não faz.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · ONDE FALHA -->
+  <section class="slide" data-time="—" data-notes="Sub-slide do mindset. Honestidade gera credibilidade. 'Coerência sistêmica longa' = janela de contexto se perdendo.">
+    <header class="section-label">
+      <span>Onde a IA falha</span>
+      <h2 class="sl-title">Não delegue isto</h2>
+      <span>—</span>
+    </header>
+    <div class="fail-grid">
+      <div class="fail-item">
+        <span class="fail-num">01</span>
+        <h3>Decisão de prioridade</h3>
+        <p>Trade-off político e estratégico precisa de leitura humana.</p>
+      </div>
+      <div class="fail-item">
+        <span class="fail-num">02</span>
+        <h3>Sensibilidade cultural</h3>
+        <p>Contexto local, tom, código social — IA generaliza.</p>
+      </div>
+      <div class="fail-item">
+        <span class="fail-num">03</span>
+        <h3>Trade-off com poucos dados</h3>
+        <p>Sem evidências, IA preenche com o que ela considera bom no contexto — não com verdadeiro.</p>
+      </div>
+      <div class="fail-item">
+        <span class="fail-num">04</span>
+        <h3>Coerência sistêmica longa</h3>
+        <p>Janela de contexto se perde dentro da própria sessão.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · WORKFLOW INTRO -->
+  <section class="slide slide-divider" data-time="15min" data-notes="Bloco core, 15min. Para cada fase: ferramenta + job + antes/depois. Não vender, mostrar.">
+    <span class="divider-num">04</span>
+    <h2 class="divider-title">Workflow por fase do processo</h2>
+    <p class="divider-sub">5 fases · Ferramentas + O que fazer + Antes e depois + Tempo economizado</p>
+    <div class="phase-pills">
+      <span class="pill">Discovery</span>
+      <span class="pill">Ideação</span>
+      <span class="pill">Copy</span>
+      <span class="pill">Protótipo</span>
+      <span class="pill">Handoff</span>
+    </div>
+  </section>
+
+  <!-- 7 · DISCOVERY -->
+  <section class="slide" data-time="3min" data-notes="Players novos = tempo. Com IA: contexto + análise + onde montar (FigJam). Reduz 80%.">
+    <header class="section-label">
+      <span>4.1 / Discovery &amp; Research</span>
+      <h2 class="sl-title">Sintetizar o que antes levava dias</h2>
+      <span>3min</span>
+    </header>
+    <div class="workflow-grid">
+      <div class="card">
+        <h3 class="card-title">Ferramenta</h3>
+        <div class="badges">
+          <span class="badge">Claude Code</span>
+          <span class="badge">Gemini</span>
+          <span class="badge">Perplexity</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3 class="card-title">O que dá pra fazer</h3>
+        <ul class="bullets">
+          <li>Sintetizar entrevistas</li>
+          <li>Desk research e benchmark competitivo</li>
+          <li>Clusterizar pain points</li>
+          <li>Analisar dashboards de dados</li>
+        </ul>
+      </div>
+      <div class="card before-after">
+        <span class="ba-label">Antes</span>
+        <p>Tempo para encontrar players, aprofundar no contexto, coletar informações, montar board, criar análise.</p>
+      </div>
+      <div class="card before-after">
+        <span class="ba-label after">Depois</span>
+        <p>Informe o contexto › informe o player › Tipo de análise › Onde montar (ex: FigJam) › Iterar e refinar.</p>
+        <span class="metric">−80% tempo</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · IDEAÇÃO -->
+  <section class="slide" data-time="3min" data-notes="Markdown = Claude Code lê rápido + menos tokens. Obsidian + transcrições + Jira/Confluence = base de conhecimento. Mermaid → FigJam → Figma. 90% redução.">
+    <header class="section-label">
+      <span>4.2 / Ideação &amp; Estratégia</span>
+      <h2 class="sl-title">Do markdown ao Figma sem fricção</h2>
+      <span>3min</span>
+    </header>
+    <div class="workflow-grid">
+      <div class="card">
+        <h3 class="card-title">Ferramenta</h3>
+        <div class="badges">
+          <span class="badge">Claude Skills</span>
+          <span class="badge">Figma MCP</span>
+          <span class="badge">Obsidian</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3 class="card-title">Truques</h3>
+        <ul class="bullets">
+          <li>Documente em <strong>Markdown</strong> — Claude lê rápido + menos tokens</li>
+          <li>Base de conhecimento: transcrições + Jira/Confluence + ideações</li>
+          <li>Fluxo: Markdown → Mermaid → FigJam → Figma com Design System</li>
+        </ul>
+      </div>
+      <div class="card before-after">
+        <span class="ba-label">Antes</span>
+        <p>Estruturar doc, desenhar fluxograma à mão, atrasar exploração visual.</p>
+      </div>
+      <div class="card before-after">
+        <span class="ba-label after">Depois</span>
+        <p>Resultado prático cedo, validação rápida, foco em stakeholder, tempo para refinar visual.</p>
+        <span class="metric">−90% tempo</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 · COPY -->
+  <section class="slide" data-time="3min" data-notes="Link do Figma → Claude valida → output direto no Figma → check humano → vai pra content já refinado. Reduz 80%.">
+    <header class="section-label">
+      <span>4.3 / Copy</span>
+      <h2 class="sl-title">Validação de tom direto no Figma</h2>
+      <span>3min</span>
+    </header>
+    <div class="workflow-grid">
+      <div class="card">
+        <h3 class="card-title">Ferramenta</h3>
+        <div class="badges">
+          <span class="badge">Claude Code Skills</span>
+          <span class="badge">Figma</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3 class="card-title">Jobs</h3>
+        <ul class="bullets">
+          <li>Validação de content</li>
+          <li>Criação de FAQ</li>
+          <li>Verificação de tom de voz</li>
+        </ul>
+        <p class="card-foot">Passo link do Figma → IA valida → grava output direto na tela → faço o check.</p>
+      </div>
+      <div class="card before-after">
+        <span class="ba-label">Antes</span>
+        <p>Verificar guia, alinhar com content, considerações de stakeholders, ciclos longos.</p>
+      </div>
+      <div class="card before-after">
+        <span class="ba-label after">Depois</span>
+        <p>Chego na content com revisão prévia já feita pela IA.</p>
+        <span class="metric">−80% tempo</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 · PROTÓTIPO -->
+  <section class="slide" data-time="3min" data-notes="Princípio chave: designer entende o código que entrega. Protótipo de produção = validação tech mais precisa.">
+    <header class="section-label">
+      <span>4.4 / Protótipo &amp; Código</span>
+      <h2 class="sl-title">Protótipo com fidelidade de produção</h2>
+      <span>3min</span>
+    </header>
+    <div class="workflow-grid">
+      <div class="card">
+        <h3 class="card-title">Ferramenta</h3>
+        <div class="badges">
+          <span class="badge">Figma Make</span>
+          <span class="badge">Claude Code</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3 class="card-title">Jobs</h3>
+        <ul class="bullets">
+          <li>Testar protótipo com inputs de dados reais</li>
+          <li>Maior fidelidade pro desenvolvimento</li>
+          <li>Validação tech precisa</li>
+        </ul>
+      </div>
+      <div class="card principle-card">
+        <h3 class="card-title">Princípio</h3>
+        <p class="principle">Designer <strong>entende o código</strong> que entrega.</p>
+      </div>
+      <div class="card before-after">
+        <span class="ba-label after">Depois</span>
+        <p>Criar como seria em produção. Validação com tech mais precisa, menos retrabalho.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 · HANDOFF -->
+  <section class="slide" data-time="3min" data-notes="Por quê terminal: acesso a arquivos, git, MCPs — IA com contexto real, não chat isolado.">
+    <header class="section-label">
+      <span>4.5 / Handoff, Doc &amp; Automação</span>
+      <h2 class="sl-title">Terminal = IA com contexto real</h2>
+      <span>3min</span>
+    </header>
+    <div class="workflow-grid">
+      <div class="card">
+        <h3 class="card-title">Ferramenta</h3>
+        <div class="badges">
+          <span class="badge">Terminal</span>
+          <span class="badge">Claude Code</span>
+          <span class="badge">MCPs</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3 class="card-title">Jobs</h3>
+        <ul class="bullets">
+          <li>Specs automáticas</li>
+          <li>Changelog</li>
+          <li>Scripts repetitivos</li>
+          <li>Sync Figma ↔ código</li>
+        </ul>
+      </div>
+      <div class="card principle-card span-2">
+        <h3 class="card-title">Por quê terminal</h3>
+        <p class="principle">Acesso a arquivos, git e MCPs — IA opera com <strong>contexto real do projeto</strong>, não em isolamento.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 · PRÓXIMOS PASSOS -->
+  <section class="slide" data-time="3min" data-notes="3 ações concretas. Plateia sai com algo pra fazer essa semana. Não delegar — convidar.">
+    <header class="section-label">
+      <span>06 / Como aprofundar amanhã</span>
+      <h2 class="sl-title">3 ações pro time essa semana</h2>
+      <span>3min</span>
+    </header>
+    <div class="grid-3">
+      <div class="card num-card">
+        <span class="num">01</span>
+        <h3 class="card-title">Migrar 1 fluxo de research</h3>
+        <p>Mover um fluxo real pra workflow Claude com contexto persistente. Medir tempo antes/depois.</p>
+      </div>
+      <div class="card num-card">
+        <span class="num">02</span>
+        <h3 class="card-title">Experimentar Cursor em 1 componente</h3>
+        <p>Pegar um componente real e prototipar em código. Sentir a diferença de fidelidade.</p>
+      </div>
+      <div class="card num-card">
+        <span class="num">03</span>
+        <h3 class="card-title">Criar 1 skill / MCP custom</h3>
+        <p>Automatizar uma rotina chata do seu próprio workflow. Compartilhar com o time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 · ARMADILHAS -->
+  <section class="slide" data-time="—" data-notes="Armadilhas só aparecem com uso pesado. Compartilhar = honestidade. Cuidado com sucesso prematuro.">
+    <header class="section-label">
+      <span>Armadilhas que aparecem com uso pesado</span>
+      <h2 class="sl-title">O custo invisível</h2>
+      <span>—</span>
+    </header>
+    <div class="grid-3">
+      <div class="fail-item">
+        <span class="fail-num">01</span>
+        <h3>IA-dependência em decisão</h3>
+        <p>Perda de músculo crítico. Quem deixa de decidir, deixa de pensar.</p>
+      </div>
+      <div class="fail-item">
+        <span class="fail-num">02</span>
+        <h3>Output bonito sem fundamento</h3>
+        <p>Aparência de qualidade sem base. Slop polido continua slop.</p>
+      </div>
+      <div class="fail-item">
+        <span class="fail-num">03</span>
+        <h3>Velocidade alta, direção errada</h3>
+        <p>Acelerar o errado é pior que andar devagar no certo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 · IA NO DIA A DIA -->
+  <section class="slide" data-time="3min" data-notes="Bônus prático. 5 frentes onde IA já está no meu dia: ideação, content, PRD, dados, personas sintéticas. Cada uma = ganho específico de tempo.">
+    <header class="section-label">
+      <span>Bônus / IA no dia a dia</span>
+      <h2 class="sl-title">O que tenho feito com a IA</h2>
+      <span>3min</span>
+    </header>
+    <div class="grid-5">
+      <div class="card daily-card">
+        <span class="num">01</span>
+        <h3 class="card-title">Ideação</h3>
+        <p>Skill que pega um fluxo em discussão e desenha as primeiras estruturas no Figma com o DS.</p>
+        <span class="gain">Ganho: ideação rápida, aprofundo onde faz sentido</span>
+      </div>
+      <div class="card daily-card">
+        <span class="num">02</span>
+        <h3 class="card-title">Content</h3>
+        <p>Revisão do texto das telas com base no tom de voz da marca.</p>
+        <span class="gain">Ganho: texto redondo, dentro do tom</span>
+      </div>
+      <div class="card daily-card">
+        <span class="num">03</span>
+        <h3 class="card-title">PRD</h3>
+        <p>Documentação da jornada construída, integrada direto no Jira/Confluence.</p>
+        <span class="gain">Ganho: tempo na escrita de doc</span>
+      </div>
+      <div class="card daily-card">
+        <span class="num">04</span>
+        <h3 class="card-title">Análise de dados</h3>
+        <p>Amplitude conectado via MCP. Leio dashboards, gero relatórios e exporto pra qualquer lugar.</p>
+        <span class="gain">Ganho: análise individual + produção</span>
+      </div>
+      <div class="card daily-card">
+        <span class="num">05</span>
+        <h3 class="card-title">Personas sintéticas</h3>
+        <p>Crio personas do produto e simulo testes de usabilidade antes de levar pro cliente real.</p>
+        <span class="gain">Ganho: assertividade nas explorações</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 · FECHAMENTO -->
+  <section class="slide slide-quote" data-time="2min" data-notes="Fechamento. Pausa longa antes da última frase. Voltar à tese.">
+    <p class="quote-eyebrow">07 / Fechamento</p>
+    <blockquote>
+      A ferramenta amplifica<br>
+      <span class="quote-emph">o que você já é.</span>
+    </blockquote>
+    <p class="quote-foot">Repertório + contexto + processo.</p>
+  </section>
+
+  <!-- 16 · Q&A -->
+  <section class="slide slide-qa" data-time="20min" data-notes="20min. 3 perguntas-âncora prontas: stakeholder cético, privacidade, ROI sem teatro.">
+    <p class="qa-question">Como vocês têm usado IA no dia a dia?</p>
+    <h2 class="qa-title">Q&amp;A</h2>
+    <p class="qa-sub">20 minutos · pergunta difícil é bem-vinda.</p>
+    <div class="qa-anchors">
+      <span class="anchor">Stakeholder cético</span>
+      <span class="anchor">Privacidade de dado</span>
+      <span class="anchor">ROI sem virar teatro</span>
+      <span class="anchor">Quando NÃO usar IA</span>
+      <span class="anchor">Skills × MCPs × Agents</span>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══ HUD ══════════════════════════════════════════════════════════ -->
+<div class="hud" id="hud">
+  <button class="hud-btn" id="prevBtn" aria-label="Slide anterior">‹</button>
+  <span class="hud-counter"><span id="curIdx">01</span> / <span id="totIdx">16</span></span>
+  <button class="hud-btn" id="nextBtn" aria-label="Próximo slide">›</button>
+  <span class="hud-sep"></span>
+  <button class="hud-btn small" id="overviewBtn" title="Visão geral (O)">⊞</button>
+  <button class="hud-btn small" id="fsBtn" title="Tela cheia (F)">⛶</button>
+  <button class="hud-btn small" id="helpBtn" title="Atalhos (?)">?</button>
+</div>
+
+<!-- timing badge (hidden via CSS, kept for app.js refs) -->
+<div class="time-badge" id="timeBadge">—</div>
+
+<!-- footer brand -->
+<a class="footer-brand" href="#1" aria-label="Voltar ao slide 1">
+  <svg viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
+    <g transform="translate(16,12)">
+      <path d="M8.51 8.53c.01.48-.09.95-.3 1.38a3.6 3.6 0 01-.81 1.09c-.34.31-.74.55-1.17.71-.45.17-.92.26-1.4.26L0 11.95V0h4.3c.49 0 .98.07 1.44.23.43.14.82.37 1.16.67.33.3.6.67.77 1.08.19.45.28.94.28 1.43 0 .45-.1.89-.3 1.3a3.2 3.2 0 01-.79 1.06c.26.13.49.3.69.49.2.2.38.42.52.67.14.24.25.5.33.77.07.27.11.55.11.83zM5.66 3.45c.01-.26-.05-.52-.17-.75a1.5 1.5 0 00-.44-.58 1.7 1.7 0 00-.64-.31 2.8 2.8 0 00-.75-.1H2.32v3.29l.67.01h.69c.25 0 .5-.03.74-.09.23-.05.45-.15.64-.28.18-.13.34-.3.44-.5.12-.23.17-.48.17-.72zm.45 4.94c0-.24-.05-.47-.14-.69a1.5 1.5 0 00-.39-.53 1.7 1.7 0 00-.57-.34 2.5 2.5 0 00-.7-.12c-.34-.01-.67-.01-1-.01s-.67 0-1 0v3.3h1.73c.25 0 .5-.03.74-.09.24-.06.46-.15.65-.29.19-.13.35-.31.47-.51.12-.23.18-.48.17-.72z"/>
+      <rect x="15" y="6" width="1.6" height="26.2" rx=".8" transform="rotate(44.92 15.8 19.1)"/>
+      <g transform="translate(19.5,27.5)">
+        <path d="M12.59 6.2c0 .68-.11 1.36-.34 2.01-.22.63-.55 1.22-.96 1.74l1.19 1.18-1.37 1.37-1.22-1.24a5.9 5.9 0 01-1.67.84 6.3 6.3 0 01-1.93.3c-.84.01-1.67-.16-2.44-.49a6.1 6.1 0 01-2-1.33 6.1 6.1 0 01-1.35-1.96A6.2 6.2 0 010 6.2c0-.83.17-1.65.49-2.41a6.1 6.1 0 011.35-1.97A6.1 6.1 0 013.85.49 6.3 6.3 0 016.29 0c.84 0 1.67.17 2.45.49a6.1 6.1 0 012.01 1.33 6.1 6.1 0 011.35 1.97c.33.76.5 1.58.49 2.41zm-2.26 0c0-.53-.11-1.06-.32-1.55a4.1 4.1 0 00-.87-1.28 4.1 4.1 0 00-1.28-.87 4.1 4.1 0 00-1.57-.32c-.54 0-1.07.11-1.57.32-.48.21-.92.5-1.28.87a4.1 4.1 0 00-.87 1.28 4.1 4.1 0 00-.32 1.55c0 .53.11 1.06.32 1.55.2.48.5.92.87 1.28.37.37.81.66 1.28.87.49.22 1.03.32 1.57.32.37 0 .73-.05 1.08-.15.34-.1.67-.24.98-.42l-1.12-1.09 1.37-1.37 1.11 1.14a3.9 3.9 0 00.63-2.12z"/>
+      </g>
+    </g>
+  </svg>
+</a>
+
+<!-- footer site link -->
+<a class="footer-site" href="https://brunoqueiros.com" target="_blank" rel="noopener">brunoqueiros.com</a>
+
+<!-- mobile menu FAB (only visible in mobile via CSS) -->
+<button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu" aria-expanded="false">
+  <span></span><span></span><span></span>
+</button>
+
+<!-- progress bar -->
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<!-- ══ OVERVIEW ═════════════════════════════════════════════════════ -->
+<div class="overview" id="overview" hidden>
+  <div class="overview-head">
+    <h2>Visão geral / 16 slides</h2>
+    <button class="overview-close" id="overviewClose" aria-label="Fechar">✕</button>
+  </div>
+  <div class="overview-grid" id="overviewGrid"></div>
+</div>
+
+<!-- ══ SPEAKER NOTES ════════════════════════════════════════════════ -->
+<aside class="speaker-panel" id="speakerPanel" hidden>
+  <div class="speaker-head">
+    <strong>Notas / slide <span id="speakerIdx">01</span></strong>
+    <button class="speaker-close" id="speakerClose">✕</button>
+  </div>
+  <p class="speaker-time">Bloco · <span id="speakerTime">—</span></p>
+  <p class="speaker-notes" id="speakerNotes"></p>
+</aside>
+
+<!-- ══ HELP ═════════════════════════════════════════════════════════ -->
+<div class="help-modal" id="helpModal" hidden>
+  <div class="help-card">
+    <h3>Atalhos</h3>
+    <ul>
+      <li><kbd>→</kbd> <kbd>Space</kbd> <kbd>PgDn</kbd> <span>— Próximo</span></li>
+      <li><kbd>←</kbd> <kbd>PgUp</kbd> <span>— Anterior</span></li>
+      <li><kbd>Home</kbd> <kbd>End</kbd> <span>— Início / Fim</span></li>
+      <li><kbd>F</kbd> <span>— Tela cheia</span></li>
+      <li><kbd>O</kbd> <span>— Visão geral</span></li>
+      <li><kbd>S</kbd> <span>— Notas do apresentador</span></li>
+      <li><kbd>1</kbd>–<kbd>9</kbd> <span>— Ir pro slide N</span></li>
+      <li><kbd>?</kbd> <span>— Esta tela</span></li>
+      <li><kbd>Esc</kbd> <span>— Fechar overlay / sair fullscreen</span></li>
+    </ul>
+    <button class="btn-text" id="helpClose">Fechar</button>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
