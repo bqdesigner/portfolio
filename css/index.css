@@ -46,6 +46,7 @@ body:has(.dot-pattern) { background: transparent; }
   width: 100%;
   --row-gap: 24px;
   --row-pad: 32px;
+  --row-radius: 32px;
   gap: 0;
 }
 
@@ -100,6 +101,16 @@ body:has(.dot-pattern) { background: transparent; }
   .hero-title-row { gap: var(--row-gap); }
   .hero-title-row--left { padding-left: var(--row-pad); animation: none; }
   .hero-title-row--right { padding-right: var(--row-pad); animation: none; }
+  .hero-title-shape--right {
+    border-top-left-radius: var(--row-radius);
+    border-bottom-left-radius: var(--row-radius);
+    animation: none;
+  }
+  .hero-title-shape--left {
+    border-top-right-radius: var(--row-radius);
+    border-bottom-right-radius: var(--row-radius);
+    animation: none;
+  }
 }
 
 .hero-title-shape {
@@ -113,13 +124,29 @@ body:has(.dot-pattern) { background: transparent; }
 }
 
 .hero-title-shape--right {
-  border-top-left-radius: 32px;
-  border-bottom-left-radius: 32px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  animation: hero-shape-r 1.15s cubic-bezier(.22, .8, .26, 1) 0.5s forwards;
 }
 
 .hero-title-shape--left {
-  border-top-right-radius: 32px;
-  border-bottom-right-radius: 32px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  animation: hero-shape-l 1.15s cubic-bezier(.22, .8, .26, 1) 0.5s forwards;
+}
+
+@keyframes hero-shape-r {
+  to {
+    border-top-left-radius: var(--row-radius);
+    border-bottom-left-radius: var(--row-radius);
+  }
+}
+
+@keyframes hero-shape-l {
+  to {
+    border-top-right-radius: var(--row-radius);
+    border-bottom-right-radius: var(--row-radius);
+  }
 }
 
 .hero-text {
@@ -660,9 +687,6 @@ body:has(.dot-pattern) { background: transparent; }
     font-size: 32px;
   }
 
-  .hero-title-row--left { padding-left: 32px; }
-  .hero-title-row--right { padding-right: 32px; }
-
   .section-label {
     padding: 48px 48px 24px;
   }
@@ -691,21 +715,11 @@ body:has(.dot-pattern) { background: transparent; }
     font-size: 24px;
   }
 
-  .hero-title-row { --row-gap: 16px; --row-pad: 24px; }
+  .hero-title-row { --row-gap: 16px; --row-pad: 24px; --row-radius: 16px; }
 
   .hero-title-text {
     font-size: clamp(32px, 9vw, 56px);
     letter-spacing: -0.05em;
-  }
-
-  .hero-title-shape--right {
-    border-top-left-radius: 16px;
-    border-bottom-left-radius: 16px;
-  }
-
-  .hero-title-shape--left {
-    border-top-right-radius: 16px;
-    border-bottom-right-radius: 16px;
   }
 }
 

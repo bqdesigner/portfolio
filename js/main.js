@@ -302,3 +302,16 @@ document.querySelectorAll('.project-card:not(.project-card--link)').forEach(func
     }
   });
 })();
+
+// Hero intro: remove max-width/clip-path constraints after animation so wide
+// text (e.g. "DE EXPERIÊNCIA" on small viewports) isn't clipped. Uses
+// !important to override the animation's forwards-filled values (animation
+// origin outranks normal author styles in the cascade).
+document.querySelectorAll('.hero-title-text').forEach(function (el) {
+  el.addEventListener('animationend', function (e) {
+    if (e.animationName === 'hero-text-in') {
+      el.style.setProperty('max-width', 'none', 'important');
+      el.style.setProperty('clip-path', 'none', 'important');
+    }
+  });
+});
