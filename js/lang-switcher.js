@@ -13,6 +13,7 @@
     'nav.freelas': 'Send freelance',
     'nav.embreve': 'Soon',
     'nav.curriculo': 'Resume',
+    'nav.talk': 'Talk - AI in the designer process',
     'nav.email.label': 'Have a project?',
     'skip': 'Skip to content',
     'footer.cta': "Let's work together?",
@@ -57,6 +58,10 @@
   // Page-specific translations keyed by page filename
   var pages = {
     'index.html': {
+      'hero.title1.a': 'Product',
+      'hero.title1.b': 'Designer',
+      'hero.title2.a': '10+ years',
+      'hero.title2.b': 'of experience',
       'hero.line0': "I'm Bruno, also known as Brunão.",
       'hero.line1': 'With over 10 years of design experience, I turn challenges into experiences that generate value.',
       'hero.line2': 'Combining craft, AI, data, and strategy, I create solutions that connect users and businesses with real impact.',
