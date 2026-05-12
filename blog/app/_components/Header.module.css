@@ -1,4 +1,4 @@
-/* Ported from main site styles.css — header/nav/hamburger/mobile/controls */
+/* Ported from main site styles.css — header/menu trigger/overlay/controls */
 
 .header {
   position: relative;
@@ -25,45 +25,6 @@
   top: 50%; left: 50%;
   transform: translate(-50%, -50%) rotate(44.92deg);
 }
-.nav {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  font-size: 16px;
-  text-transform: uppercase;
-  transition: opacity 0.3s, transform 0.3s;
-}
-.nav a, .nav .navItemWrapper {
-  color: var(--color-dark);
-  padding: 8px 16px;
-  border-radius: 500px;
-  transition: color 0.2s;
-  white-space: nowrap;
-  position: relative;
-}
-.nav a::after {
-  content: '';
-  position: absolute;
-  bottom: 2px;
-  left: 16px; right: 16px;
-  height: 2px;
-  background: var(--color-accent);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.4s ease;
-}
-.nav a:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-.navDivider {
-  color: var(--color-muted);
-  font-size: 18px;
-}
 
 .navItemWrapper {
   display: flex;
@@ -87,36 +48,39 @@
   line-height: 1;
 }
 
-.hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 6px;
-  width: 32px;
-  height: 32px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 200;
-  padding: 0;
-  position: relative;
-}
-.hamburger span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: var(--color-deep);
-  border-radius: 2px;
-  transition: transform 0.3s, opacity 0.3s;
-}
-.hamburgerOpen span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-.hamburgerOpen span:nth-child(2) { opacity: 0; }
-.hamburgerOpen span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-.mobileOverlay {
-  display: none;
+/* ===== MENU TRIGGER (+ button) ===== */
+.menuTrigger {
   position: fixed;
-  inset: 0;
+  top: 36px;
+  right: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  padding: 16px;
+  background: var(--color-light);
+  border: 1px solid var(--color-low);
+  border-radius: 500px;
+  cursor: pointer;
+  color: var(--color-deep);
+  z-index: 200;
+  transition: background 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+.menuTrigger:hover { border-color: var(--color-dark); }
+.menuTriggerIcon { transition: transform 0.35s ease; }
+.menuTriggerOpen .menuTriggerIcon { transform: rotate(45deg); }
+
+/* ===== MENU OVERLAY (full viewport on all sizes) ===== */
+.mobileOverlay {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
   z-index: 99;
   background: var(--color-light);
   flex-direction: column;
@@ -125,7 +89,7 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s;
-  padding: 24px 24px 40px;
+  padding: 36px 48px;
   word-break: break-word;
 }
 .mobileOverlayOpen {
@@ -176,42 +140,20 @@
 }
 .mobileEmail a:hover { color: var(--color-mid); }
 
-.controls {
-  position: absolute;
-  top: 36px;
-  right: 48px;
+/* ===== LANG / THEME CONTROLS (inside overlay) ===== */
+.menuOverlayControls {
   display: flex;
-  flex-direction: column-reverse;
   align-items: center;
   gap: 8px;
-  background: var(--color-light);
+  margin-top: 32px;
+  background: transparent;
   border: 1px solid var(--color-low);
-  border-radius: 28px;
+  border-radius: 500px;
   padding: 8px;
   font-family: var(--font);
   font-size: 20px;
-  transition: opacity 0.3s, transform 0.3s, gap 0.3s ease;
 }
-.controlsItems {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 4px;
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  pointer-events: none;
-  transition: max-height 0.35s ease, opacity 0.2s ease;
-}
-.controlsExpanded .controlsItems {
-  max-height: 400px;
-  opacity: 1;
-  pointer-events: auto;
-}
-.controls:not(.controlsExpanded) { gap: 0; }
-.controlsItems .controlsDivider { display: none; }
-
-.controls button {
+.menuOverlayControls button {
   border: none;
   background: transparent;
   padding: 8px 16px;
@@ -222,8 +164,8 @@
   justify-content: center;
   transition: background 0.2s;
 }
-.controls button:hover,
-.controls button.controlActive { background: var(--color-hover); }
+.menuOverlayControls button:hover,
+.menuOverlayControls button.controlActive { background: var(--color-hover); }
 
 .controlsDivider {
   color: var(--color-muted);
@@ -231,87 +173,27 @@
   line-height: 1;
 }
 
-.controlsToggle {
-  border: none;
-  background: transparent;
-  padding: 8px;
-  border-radius: 500px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-deep);
-  transition: background 0.2s;
-  flex-shrink: 0;
-}
-.controlsToggle:hover { background: var(--color-hover); }
-.controlsToggle svg { transition: transform 0.35s ease; }
-.controlsExpanded .controlsToggle svg { transform: rotate(45deg); }
-
 /* ===== DARK MODE ===== */
-:global([data-theme="dark"]) .headerScrolled .nav {
-  background: rgba(25, 24, 25, 0.7);
-}
 :global([data-theme="dark"]) .logoB path,
 :global([data-theme="dark"]) .logoSlash rect,
 :global([data-theme="dark"]) .logoQ path { fill: #E8E8E8; }
-:global([data-theme="dark"]) .hamburger span { background: #E8E8E8; }
+:global([data-theme="dark"]) .menuTrigger {
+  background: #191819;
+  color: #E8E8E8;
+}
 :global([data-theme="dark"]) .mobileOverlay { background: #191819; }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1090px) {
   .header {
     padding: 24px;
-    justify-content: flex-start;
     gap: 0;
   }
-  .controls {
-    position: static;
-    order: 2;
-    flex-direction: row;
-    gap: 8px;
-    padding: 8px;
-    opacity: 1;
-    transform: none;
-    pointer-events: auto;
-    background: var(--color-light);
-    border: 1px solid var(--color-low);
-    border-radius: 500px;
-    margin-left: auto;
-    margin-right: 16px;
+  .menuTrigger {
+    top: 24px;
+    right: 24px;
   }
-  .controls button { padding: 8px; }
-  .controlsDivider { display: none; }
-  .controls .controlsToggle { display: none !important; }
-  .controlsItems {
-    position: static;
-    flex-direction: row;
-    align-items: center;
-    display: flex;
-    max-height: none;
-    opacity: 1;
-    overflow: visible;
-    pointer-events: auto;
-    padding: 0;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-    transform: none;
+  .mobileOverlay {
+    padding: 24px 24px 40px;
   }
-  .controlsItems .controlsDivider { display: inline; }
-  .nav { display: none; }
-  .hamburger {
-    display: flex;
-    order: 4;
-    margin-left: auto;
-    background: var(--color-light);
-    border: 1px solid var(--color-low);
-    border-radius: 500px;
-    padding: 16px;
-    width: auto;
-    height: auto;
-    transition: background 0.3s, box-shadow 0.3s, border-color 0.3s;
-  }
-  .mobileOverlay { display: flex; }
 }

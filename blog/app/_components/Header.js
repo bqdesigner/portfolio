@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Header.module.css';
 
 const SITE = 'https://brunoqueiros.com';
@@ -29,23 +29,9 @@ function Logo() {
   );
 }
 
-function NavLink({ item }) {
-  if (item.tag) {
-    return (
-      <a href={item.href} className={styles.navItemWrapper}>
-        <span>{item.label}</span>
-        <span className={styles.navTag}>{item.tag}</span>
-      </a>
-    );
-  }
-  return <a href={item.href} className={item.active ? styles.navActive : ''}>{item.label}</a>;
-}
-
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [theme, setTheme] = useState('light');
-  const [controlsExpanded, setControlsExpanded] = useState(false);
-  const controlsRef = useRef(null);
 
   useEffect(() => {
     setTheme(document.documentElement.getAttribute('data-theme') || 'light');
@@ -54,17 +40,6 @@ export default function Header() {
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
   }, [menuOpen]);
-
-  useEffect(() => {
-    if (!controlsExpanded) return;
-    function onDocClick(e) {
-      if (controlsRef.current && !controlsRef.current.contains(e.target)) {
-        setControlsExpanded(false);
-      }
-    }
-    document.addEventListener('click', onDocClick);
-    return () => document.removeEventListener('click', onDocClick);
-  }, [controlsExpanded]);
 
   function applyTheme(next) {
     setTheme(next);
@@ -76,56 +51,22 @@ export default function Header() {
     <>
       <header className={styles.header}>
         <Logo />
-        <nav className={styles.nav}>
-          {NAV.map((item, i) => (
-            <span key={item.label} style={{ display: 'contents' }}>
-              <NavLink item={item} />
-              {i < NAV.length - 1 && <span className={styles.navDivider} aria-hidden="true">/</span>}
-            </span>
-          ))}
-        </nav>
 
         <button
-          className={`${styles.hamburger} ${menuOpen ? styles.hamburgerOpen : ''}`}
+          className={`${styles.menuTrigger} ${menuOpen ? styles.menuTriggerOpen : ''}`}
           onClick={() => setMenuOpen((v) => !v)}
           aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
+          aria-expanded={menuOpen}
         >
-          <span /><span /><span />
+          <svg className={styles.menuTriggerIcon} viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <line x1="10" y1="4" x2="10" y2="16" />
+            <line x1="4" y1="10" x2="16" y2="10" />
+          </svg>
         </button>
-
-        <div ref={controlsRef} className={`${styles.controls} ${controlsExpanded ? styles.controlsExpanded : ''}`}>
-          <div className={styles.controlsItems}>
-            <button
-              type="button"
-              className={theme === 'light' ? styles.controlActive : ''}
-              onClick={() => applyTheme('light')}
-              aria-label="Modo claro"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20"><circle cx="10" cy="10" r="4" fill="#F59E0B"/><g stroke="#F59E0B" strokeWidth="2" strokeLinecap="round"><line x1="10" y1="1" x2="10" y2="3"/><line x1="10" y1="17" x2="10" y2="19"/><line x1="1" y1="10" x2="3" y2="10"/><line x1="17" y1="10" x2="19" y2="10"/><line x1="3.34" y1="3.34" x2="4.75" y2="4.75"/><line x1="15.25" y1="15.25" x2="16.66" y2="16.66"/><line x1="3.34" y1="16.66" x2="4.75" y2="15.25"/><line x1="15.25" y1="4.75" x2="16.66" y2="3.34"/></g></svg>
-            </button>
-            <span className={styles.controlsDivider} aria-hidden="true">/</span>
-            <button
-              type="button"
-              className={theme === 'dark' ? styles.controlActive : ''}
-              onClick={() => applyTheme('dark')}
-              aria-label="Modo escuro"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.003 8.003 0 1010.586 10.586z" fill="#6366F1"/></svg>
-            </button>
-          </div>
-          <button
-            className={styles.controlsToggle}
-            type="button"
-            aria-label="Abrir opções"
-            aria-expanded={controlsExpanded}
-            onClick={() => setControlsExpanded((v) => !v)}
-          >
-            <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg>
-          </button>
-        </div>
       </header>
 
       <div className={`${styles.mobileOverlay} ${menuOpen ? styles.mobileOverlayOpen : ''}`} role="dialog" aria-modal="true" aria-label="Menu de navegação">
+        <Logo />
         <div className={styles.mobileLinks}>
           {NAV.map((item) => (
             <a key={item.label} href={item.href} onClick={() => setMenuOpen(false)} className={item.tag ? styles.navItemWrapper : ''}>
@@ -138,6 +79,27 @@ export default function Header() {
             </a>
           ))}
         </div>
+
+        <div className={styles.menuOverlayControls}>
+          <button
+            type="button"
+            className={theme === 'light' ? styles.controlActive : ''}
+            onClick={() => applyTheme('light')}
+            aria-label="Modo claro"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20"><circle cx="10" cy="10" r="4" fill="#F59E0B"/><g stroke="#F59E0B" strokeWidth="2" strokeLinecap="round"><line x1="10" y1="1" x2="10" y2="3"/><line x1="10" y1="17" x2="10" y2="19"/><line x1="1" y1="10" x2="3" y2="10"/><line x1="17" y1="10" x2="19" y2="10"/><line x1="3.34" y1="3.34" x2="4.75" y2="4.75"/><line x1="15.25" y1="15.25" x2="16.66" y2="16.66"/><line x1="3.34" y1="16.66" x2="4.75" y2="15.25"/><line x1="15.25" y1="4.75" x2="16.66" y2="3.34"/></g></svg>
+          </button>
+          <span className={styles.controlsDivider} aria-hidden="true">/</span>
+          <button
+            type="button"
+            className={theme === 'dark' ? styles.controlActive : ''}
+            onClick={() => applyTheme('dark')}
+            aria-label="Modo escuro"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.003 8.003 0 1010.586 10.586z" fill="#6366F1"/></svg>
+          </button>
+        </div>
+
         <div className={styles.mobileEmail}>
           Tem um projeto? <a href="mailto:bqdesigner@outlook.com">bqdesigner@outlook.com</a>
         </div>
