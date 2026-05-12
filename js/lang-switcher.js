@@ -58,6 +58,7 @@
   // Page-specific translations keyed by page filename
   var pages = {
     'index.html': {
+      'hero.eyebrow': "Hey, I'm Brunão",
       'hero.title1.a': 'Product',
       'hero.title1.b': 'Designer',
       'hero.title2.a': '10+ years',
