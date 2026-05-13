@@ -88,9 +88,14 @@ a {
   z-index: 100;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 36px 48px;
+  pointer-events: none;
   transition: background-color 0.3s, backdrop-filter 0.3s, border-color 0.3s;
+}
+
+.header .menu-trigger {
+  pointer-events: auto;
 }
 
 .header--scrolled {
@@ -102,7 +107,10 @@ a {
   align-items: center;
   width: 45px;
   height: 48px;
-  position: relative;
+  position: absolute;
+  top: 36px;
+  left: 48px;
+  z-index: 100;
   cursor: pointer;
   transition: opacity 0.3s, transform 0.3s;
 }
@@ -708,6 +716,11 @@ a {
   .header {
     padding: 24px;
     gap: 0;
+  }
+
+  .logo {
+    top: 24px;
+    left: 24px;
   }
 
   .mobile-overlay {

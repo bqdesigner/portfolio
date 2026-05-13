@@ -18,6 +18,8 @@ if (scrollIndicator) {
 function bindLogoSmoothScroll() {
   var logoLink = document.getElementById('logoLink');
   if (!logoLink) return;
+  var isIndex = /\/(index(\.html)?)?$/.test(location.pathname);
+  if (!isIndex) return; // outras páginas: href="index.html" navega normalmente
   logoLink.addEventListener('click', function(e) {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
