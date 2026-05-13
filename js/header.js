@@ -8,6 +8,23 @@
     wireTheme();
     wireHeaderScroll();
     wireHamburger();
+    wireBlogThemeSync();
+  }
+
+  // Decora links pra /blog com ?theme=<atual> pra sincronizar tema em dev (origins diferentes).
+  // Em prod o blog roda no mesmo domínio via rewrite — localStorage compartilhado faz o trabalho;
+  // o query param só vira ruído inofensivo, removido pelo bootstrap inline da página alvo.
+  function wireBlogThemeSync() {
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="/blog"]');
+      if (!a) return;
+      try {
+        var theme = document.documentElement.getAttribute('data-theme') || 'dark';
+        var u = new URL(a.getAttribute('href'), location.origin);
+        u.searchParams.set('theme', theme);
+        a.setAttribute('href', u.pathname + u.search + u.hash);
+      } catch (_) {}
+    }, true);
   }
 
   function wireTheme() {

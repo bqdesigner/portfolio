@@ -15,6 +15,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR" data-theme="dark" suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{var qt=new URLSearchParams(location.search).get('theme');if(qt==='light'||qt==='dark'){localStorage.setItem('theme',qt);var u=new URL(location.href);u.searchParams.delete('theme');history.replaceState(null,'',u.pathname+(u.search||'')+u.hash);}var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();",
+          }}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
