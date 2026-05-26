@@ -63,6 +63,8 @@ body:has(.dot-pattern) { background: transparent; }
   --row-pad: 32px;
   --row-radius: 32px;
   gap: 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero-title-row--left {
@@ -96,6 +98,8 @@ body:has(.dot-pattern) { background: transparent; }
   max-width: 0;
   clip-path: inset(-0.2em 0 -0.2em 0);
   animation: hero-text-in 1.15s cubic-bezier(.22, .8, .26, 1) forwards;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-title-text { animation-delay: 0.5s; }
@@ -140,6 +144,8 @@ body:has(.dot-pattern) { background: transparent; }
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-title-shape--right {
@@ -152,6 +158,32 @@ body:has(.dot-pattern) { background: transparent; }
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   animation: hero-shape-l 1.15s cubic-bezier(.22, .8, .26, 1) 0.5s forwards;
+}
+
+.hero-title-row::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 3;
+  pointer-events: none;
+  width: calc(var(--hero-cover, 0) * 100%);
+  background-image: linear-gradient(to bottom, var(--color-accent), color-mix(in srgb, var(--color-accent) 55%, #000));
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 100vw 100%;
+}
+
+.hero-title-row--left::before {
+  right: 0;
+  border-top-left-radius: var(--row-radius);
+  border-bottom-left-radius: var(--row-radius);
+}
+
+.hero-title-row--right::before {
+  left: 0;
+  border-top-right-radius: var(--row-radius);
+  border-bottom-right-radius: var(--row-radius);
 }
 
 @keyframes hero-shape-r {
@@ -333,10 +365,10 @@ body:has(.dot-pattern) { background: transparent; }
   cursor: default;
 }
 
-.project-card--vip { background: #191819; }
-[data-theme="dark"] .project-card--vip { background: #2A2A2A; }
+.project-card--vip { background: var(--color-fixed-dark); }
+[data-theme="dark"] .project-card--vip { background: var(--color-low); }
 
-.project-card--playground { background: #1DA1F2; }
+.project-card--playground { background: var(--color-accent); }
 
 .project-card img.project-img {
   position: absolute;
@@ -478,13 +510,13 @@ body:has(.dot-pattern) { background: transparent; }
 }
 
 .project-info--light .project-cta:hover {
-  background: #191819;
+  background: var(--color-fixed-dark);
   color: #F6F4F0;
 }
 
 .project-info--dark .project-cta:hover {
   background: #F3F1EC;
-  color: #191819;
+  color: var(--color-fixed-dark);
 }
 
 /* ===== EM BREVE LABEL ===== */
@@ -519,18 +551,6 @@ body:has(.dot-pattern) { background: transparent; }
   padding: 80px 101px 0;
 }
 
-.about-me-label {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding-bottom: 32px;
-  margin-bottom: 48px;
-  font-size: 12px;
-  color: var(--color-mid);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
 .about-quote {
   margin-top: 28px;
   padding-top: 20px;
@@ -541,22 +561,6 @@ body:has(.dot-pattern) { background: transparent; }
   color: var(--color-deep);
   letter-spacing: -0.015em;
   max-width: 40ch;
-}
-
-.about-me-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 24px;
-}
-
-.about-me-tags span {
-  padding: 7px 14px;
-  border-radius: 500px;
-  border: 1px solid var(--color-low);
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--color-mid);
 }
 
 .about-me-inner {
@@ -683,9 +687,9 @@ body:has(.dot-pattern) { background: transparent; }
 }
 
 .about-me-btn:hover {
-  background: #191819;
-  color: #fff;
-  border-color: #191819;
+  background: var(--color-fixed-dark);
+  color: var(--color-fixed-light);
+  border-color: var(--color-fixed-dark);
 }
 
 .about-me-btn:hover .back-to-top-icon {
@@ -693,7 +697,7 @@ body:has(.dot-pattern) { background: transparent; }
 }
 
 .about-me-btn:hover .back-to-top-icon svg path {
-  stroke: #fff;
+  stroke: var(--color-fixed-light);
 }
 
 .about-me-btn .back-to-top-icon svg {
@@ -843,11 +847,6 @@ body:has(.dot-pattern) { background: transparent; }
 
   .about-me {
     padding: 48px 24px 0;
-  }
-
-  .about-me-label {
-    flex-direction: column;
-    gap: 8px;
   }
 
   .about-me-inner {

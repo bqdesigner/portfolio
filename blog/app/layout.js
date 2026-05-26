@@ -1,5 +1,6 @@
 import './globals.css';
 import Header from './_components/Header';
+import Footer from './_components/Footer';
 
 export const metadata = {
   title: { default: 'Blog | Bruno Queirós', template: '%s | Bruno Queirós' },
@@ -31,6 +32,7 @@ export default function RootLayout({ children }) {
       <body>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

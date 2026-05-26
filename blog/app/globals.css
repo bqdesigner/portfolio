@@ -6,8 +6,10 @@
   --color-low: #E9ECEF;
   --color-light: #FFFFFF;
   --color-muted: #ADB5BD;
-  --color-accent: #FF6768;
+  --color-accent: #1DA1F2;
   --color-hover: #F7F7F7;
+  --color-fixed-dark: #191819;
+  --color-fixed-light: #FFFFFF;
   --font: 'DM Sans', system-ui, sans-serif;
   --font-mono: 'DM Mono', ui-monospace, monospace;
 }
@@ -19,7 +21,7 @@
   --color-low: #2A2A2A;
   --color-light: #191819;
   --color-muted: #6B7280;
-  --color-accent: #FF6768;
+  --color-accent: #1DA1F2;
   --color-hover: #2A2A2A;
 }
 
@@ -51,11 +53,11 @@ a {
 }
 
 ::selection {
-  background: #191819;
-  color: #ffffff;
+  background: var(--color-fixed-dark);
+  color: var(--color-fixed-light);
 }
 
 [data-theme="dark"] ::selection {
-  background: #E8E8E8;
-  color: #191819;
+  background: var(--color-deep);
+  color: var(--color-fixed-dark);
 }

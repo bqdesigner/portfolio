@@ -28,7 +28,7 @@ window.MandaFreelas = {
     {
       id: 'Design',
       icon: '✦',
-      color: '#FF6768',
+      color: '#1DA1F2',
       name: { pt: 'Design', en: 'Design' },
       desc: { pt: 'Do problema ao pixel — pesquisa, conceito e entrega visual de alta qualidade.', en: 'From problem to pixel — research, concept and high quality visual delivery.' },
       items: [

@@ -435,7 +435,7 @@
   padding: 4px 12px;
   border-radius: 999px;
   background: var(--color-accent);
-  color: #fff;
+  color: var(--color-fixed-light);
   font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -523,7 +523,7 @@
   font-family: var(--font);
 }
 .cf-tipo-btn:hover { border-color: var(--color-accent); }
-.cf-tipo-btn.active { background: var(--color-accent); border-color: var(--color-accent); color: #fff; }
+.cf-tipo-btn.active { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-fixed-light); }
 
 .cf-checklist { display: flex; flex-direction: column; gap: 8px; }
 .cf-check-item {
@@ -576,7 +576,7 @@
 }
 .cf-next:hover:not(:disabled) { background: var(--color-accent); gap: 12px; }
 .cf-next:disabled { opacity: .35; cursor: default; }
-[data-theme="dark"] .cf-next { background: #F3F1EC; color: #191819; }
+[data-theme="dark"] .cf-next { background: #F3F1EC; color: var(--color-fixed-dark); }
 
 .cf-back-btn {
   background: none; border: none; padding: 0;
@@ -617,7 +617,7 @@
   transition: border-color .2s, background .2s, color .2s;
 }
 .cf-pag-btn:hover { border-color: var(--color-accent); color: var(--color-deep); }
-.cf-pag-btn.active { background: var(--color-accent); border-color: var(--color-accent); color: #fff; }
+.cf-pag-btn.active { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-fixed-light); }
 
 .cf-sent {
   display: flex; flex-direction: column; align-items: center;
@@ -708,7 +708,7 @@
 
 /* Dark mode: lift motorista-vip card off body bg (both are #191819) */
 [data-theme="dark"] .project-card[href*="motorista-vip"] {
-  background: #2A2A2A !important;
+  background: var(--color-low) !important;
 }
 [data-theme="dark"] .project-card[href*="motorista-vip"] .project-info {
   background: rgba(42, 42, 42, 0.7) !important;
