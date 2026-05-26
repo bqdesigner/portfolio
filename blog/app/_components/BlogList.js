@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import styles from './BlogList.module.css';
 
-const PALETTE = ['#FF6768', '#C4A8FF', '#6BA6FF', '#8DD5A6', '#FFB347'];
+const PALETTE = ['#1DA1F2', '#C4A8FF', '#6BA6FF', '#8DD5A6', '#FFB347'];
 
 function catColor(name) {
   if (!name) return PALETTE[0];

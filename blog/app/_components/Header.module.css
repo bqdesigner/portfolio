@@ -39,10 +39,10 @@
   align-items: center;
   gap: 10px;
   border-radius: 4px;
-  background: #1DA1F2;
+  background: var(--color-accent);
   font-size: 10px;
   font-weight: 500;
-  color: #FFFFFF;
+  color: var(--color-fixed-light);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   line-height: 1;
@@ -177,12 +177,12 @@
 /* ===== DARK MODE ===== */
 :global([data-theme="dark"]) .logoB path,
 :global([data-theme="dark"]) .logoSlash rect,
-:global([data-theme="dark"]) .logoQ path { fill: #E8E8E8; }
+:global([data-theme="dark"]) .logoQ path { fill: var(--color-deep); }
 :global([data-theme="dark"]) .menuTrigger {
-  background: #191819;
-  color: #E8E8E8;
+  background: var(--color-fixed-dark);
+  color: var(--color-deep);
 }
-:global([data-theme="dark"]) .mobileOverlay { background: #191819; }
+:global([data-theme="dark"]) .mobileOverlay { background: var(--color-fixed-dark); }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1090px) {

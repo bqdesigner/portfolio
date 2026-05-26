@@ -184,21 +184,13 @@
     <!-- Footer -->
     <div data-partial="footer"></div>
 
-    <!-- Back to Top -->
-    <a href="#top" class="back-to-top" id="backToTop" aria-label="Me leve para o topo" style="margin: 64px auto;">
-      <span data-i18n="backtotop">me leve para o topo</span>
-      <span class="back-to-top-icon">
-        <svg width="15" height="10" viewBox="0 0 14.8333 9.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0.75 4.75H13.4167M10.0833 8.75L14.0833 4.75L10.0833 0.75" stroke="#6C757D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </span>
-    </a>
-
   </main>
 
   <script>
     // Back to top
-    document.getElementById('backToTop').addEventListener('click', function (e) {
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest && e.target.closest('#backToTop');
+      if (!btn) return;
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });

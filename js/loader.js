@@ -24,9 +24,40 @@
     );
   });
 
-  Promise.all(promises).then(dispatchReady);
+  Promise.all(promises).then(function () {
+    dispatchReady();
+    fitBigName();
+  });
 
   function dispatchReady() {
     document.dispatchEvent(new CustomEvent('partials-ready'));
+  }
+
+  function fitBigName() {
+    var els = document.querySelectorAll('.footer-bigname');
+    if (!els.length) return;
+    function fit() {
+      els.forEach(function (el) {
+        var cs = getComputedStyle(el);
+        var pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+        var avail = el.clientWidth - pad;
+        if (avail <= 0) return;
+        el.style.fontSize = '100px';
+        var contentW = 0;
+        for (var i = 0; i < el.children.length; i++) contentW += el.children[i].getBoundingClientRect().width;
+        if (contentW <= 0) return;
+        el.style.fontSize = Math.floor(100 * avail / contentW * 0.98) + 'px';
+      });
+    }
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(fit);
+    } else {
+      fit();
+    }
+    var raf;
+    window.addEventListener('resize', function () {
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(fit);
+    });
   }
 })();

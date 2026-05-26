@@ -28,14 +28,13 @@ function bindLogoSmoothScroll() {
 if (document.getElementById('logoLink')) bindLogoSmoothScroll();
 else document.addEventListener('partials-ready', bindLogoSmoothScroll);
 
-// Back to top smooth scroll
-var backToTop = document.getElementById('backToTop');
-if (backToTop) {
-  backToTop.addEventListener('click', function(e) {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-}
+// Back to top smooth scroll (button lives in async-loaded footer partial)
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest && e.target.closest('#backToTop');
+  if (!btn) return;
+  e.preventDefault();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
 // Header scroll, hamburger, closeMobileMenu live in partials/loader.js
 
@@ -118,12 +117,13 @@ document.querySelectorAll('.project-card:not(.project-card--link)').forEach(func
 });
 
 // Footer credit typewriter — triggers when footer scrolls into view
-(function() {
+function initFooterCreditTypewriter() {
   var footerEl = document.getElementById('footerCredit');
   if (!footerEl) return;
   var text = footerEl.getAttribute('data-text');
   if (!text) return;
 
+  footerEl.textContent = '';
   var words = text.split(' ');
   var spans = [];
   var cursor = document.createElement('span');
@@ -177,7 +177,9 @@ document.querySelectorAll('.project-card:not(.project-card--link)').forEach(func
   }, { threshold: 0.5 });
 
   observer.observe(footerEl);
-})();
+}
+if (document.getElementById('footerCredit')) initFooterCreditTypewriter();
+else document.addEventListener('partials-ready', initFooterCreditTypewriter);
 
 // Logo marquee — infinite scroll, reverses on scroll up, pauses on hover
 (function() {
@@ -317,3 +319,23 @@ document.querySelectorAll('.hero-title-text').forEach(function (el) {
     }
   });
 });
+
+// Hero shape cover-on-scroll: --hero-cover (0→1) drives scaleX on shapes.
+(function () {
+  if (prefersReducedMotion) return;
+  var hero = document.querySelector('.hero');
+  if (!hero) return;
+  var rafId = null;
+  function update() {
+    rafId = null;
+    var h = hero.offsetHeight || 1;
+    var scrolled = Math.max(0, -hero.getBoundingClientRect().top);
+    var p = Math.min(scrolled / h, 1);
+    hero.style.setProperty('--hero-cover', p.toFixed(3));
+  }
+  window.addEventListener('scroll', function () {
+    if (rafId == null) rafId = requestAnimationFrame(update);
+  }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
