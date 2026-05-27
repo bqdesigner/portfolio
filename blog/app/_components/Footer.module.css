@@ -31,6 +31,30 @@
   position: relative;
 }
 
+.ctaEmail::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s ease;
+}
+
+.ctaEmail:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.ctaEmail:not(:hover)::after {
+  left: auto;
+  right: 0;
+  transition: width 0.4s ease;
+}
+
 .ctaEmail:hover {
   color: var(--color-accent);
 }
@@ -57,22 +81,44 @@
 .col ul {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 0 -16px;
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.col a,
-.col p {
+.col a {
   color: var(--color-dark);
   font-size: 16px;
   text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: 500px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   white-space: nowrap;
+  width: fit-content;
+  position: relative;
   transition: color 0.2s;
+}
+
+.col a::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 16px;
+  right: 16px;
+  height: 2px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s ease;
+}
+
+.col a:hover::after,
+.col a:active::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 .col a:hover {
@@ -80,8 +126,32 @@
 }
 
 .col p {
-  margin: 0;
+  margin: 0 0 0 -16px;
+  color: var(--color-dark);
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 8px 16px;
   line-height: 1.5;
+}
+
+.colArrow {
+  flex-shrink: 0;
+}
+
+.navTag {
+  display: inline-flex;
+  padding: 4px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 4px;
+  background: var(--color-accent);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--color-fixed-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1;
 }
 
 .bigName {
@@ -120,6 +190,31 @@
   font-weight: 400;
   color: var(--color-dark);
   text-align: center;
+}
+
+.fcWord {
+  display: inline;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+.fcVisible {
+  opacity: 1;
+}
+
+.fcCursor {
+  display: none;
+  width: 2px;
+  height: 1em;
+  background: var(--color-dark);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: footer-credit-blink 0.7s step-end infinite;
+}
+
+@keyframes footer-credit-blink {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 .backToTop {

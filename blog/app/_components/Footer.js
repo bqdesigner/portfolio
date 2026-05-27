@@ -3,10 +3,76 @@
 import { useEffect, useRef } from 'react';
 import styles from './Footer.module.css';
 
-const SITE = 'https://portifolio-with-ia.vercel.app';
+const ArrowOut = () => (
+  <svg className={styles.colArrow} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="12" height="12" aria-hidden="true">
+    <path d="M7 17L17 7M9 7h8v8" />
+  </svg>
+);
+
+const CREDIT_TEXT = 'Design and Develop by Brunão — 2026 ©';
 
 export default function Footer() {
   const bigRef = useRef(null);
+  const creditRef = useRef(null);
+
+  useEffect(() => {
+    const el = creditRef.current;
+    if (!el) return;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    el.textContent = '';
+    const words = CREDIT_TEXT.split(' ');
+    const spans = words.map((word, i) => {
+      const span = document.createElement('span');
+      span.className = styles.fcWord;
+      span.textContent = word + (i < words.length - 1 ? ' ' : '');
+      el.appendChild(span);
+      return span;
+    });
+    const cursor = document.createElement('span');
+    cursor.className = styles.fcCursor;
+
+    if (reduce) {
+      spans.forEach((s) => s.classList.add(styles.fcVisible));
+      return;
+    }
+
+    let started = false;
+    let timers = [];
+    function start() {
+      if (started) return;
+      started = true;
+      let idx = 0;
+      const interval = 80;
+      function showNext() {
+        if (idx >= spans.length) {
+          spans[spans.length - 1].after(cursor);
+          cursor.style.display = 'inline-block';
+          return;
+        }
+        spans[idx].classList.add(styles.fcVisible);
+        spans[idx].after(cursor);
+        cursor.style.display = 'inline-block';
+        idx++;
+        timers.push(setTimeout(showNext, interval));
+      }
+      timers.push(setTimeout(showNext, 1000));
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          start();
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.5 });
+    observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+      timers.forEach(clearTimeout);
+    };
+  }, []);
 
   useEffect(() => {
     const el = bigRef.current;
@@ -41,7 +107,8 @@ export default function Footer() {
 
   function scrollTop(e) {
     e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }
 
   return (
@@ -58,19 +125,21 @@ export default function Footer() {
         <div className={styles.col}>
           <h4>— Social</h4>
           <ul>
-            <li><a href="https://www.linkedin.com/in/itsbrunoqueiros/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-            <li><a href="https://dribbble.com/itsbrunoqueiros" target="_blank" rel="noopener noreferrer">Dribbble</a></li>
-            <li><a href="https://medium.com/@brunoqueiros" target="_blank" rel="noopener noreferrer">Medium</a></li>
+            <li><a href="https://www.linkedin.com/in/itsbrunoqueiros/" target="_blank" rel="noopener noreferrer">LinkedIn <ArrowOut /></a></li>
+            <li><a href="https://dribbble.com/itsbrunoqueiros" target="_blank" rel="noopener noreferrer">Dribbble <ArrowOut /></a></li>
+            <li><a href="https://medium.com/@brunoqueiros" target="_blank" rel="noopener noreferrer">Medium <ArrowOut /></a></li>
           </ul>
         </div>
         <div className={styles.col}>
           <h4>— Navegação</h4>
           <ul>
-            <li><a href={`${SITE}/#trabalhos`}>Trabalhos</a></li>
-            <li><a href={`${SITE}/case-playground.html`}>Playground</a></li>
-            <li><a href={SITE}>Contato</a></li>
+            <li><a href="/#trabalhos">Trabalhos</a></li>
+            <li><a href="/case-playground.html">Playground</a></li>
+            <li><a href="/#contato">Contato</a></li>
             <li><a href="/blog">Blog</a></li>
-            <li><a href={`${SITE}/resume.html`}>Currículo</a></li>
+            <li><a href="#"><span>Manda freelas</span> <span className={styles.navTag}>Breve</span></a></li>
+            <li><a href="/resume.html">Currículo</a></li>
+            <li><a href="/presentation">Talk - IA no processo do designer</a></li>
           </ul>
         </div>
       </div>
@@ -83,7 +152,7 @@ export default function Footer() {
             <path d="M0.75 4.75H13.4167M10.0833 8.75L14.0833 4.75L10.0833 0.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </a>
-        <div className={styles.creditText}>Design and Develop by Brunão — 2026 ©</div>
+        <div className={styles.creditText} ref={creditRef}>{CREDIT_TEXT}</div>
       </div>
     </footer>
   );
