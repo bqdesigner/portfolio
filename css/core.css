@@ -338,6 +338,7 @@ body:has(.mobile-overlay--open) .logo {
   line-height: 1;
   color: var(--color-mid);
   text-wrap: balance;
+  text-transform: uppercase;
 }
 
 .footer-cta-top {
@@ -354,6 +355,7 @@ body:has(.mobile-overlay--open) .logo {
   font-weight: 700;
   line-height: 1;
   color: var(--color-dark);
+  text-transform: uppercase;
   padding-bottom: 24px;
   margin-top: 22px;
   display: inline-block;

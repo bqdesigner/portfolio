@@ -108,7 +108,7 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
 
 .hero-img {
   flex-shrink: 0;
-  width: 450px;
+  width: 500px;
   height: 400px;
   background: #242424;
   border-radius: 16px;
@@ -133,7 +133,6 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
 .hero-carrossel-track img {
   height: 100%;
   width: auto;
-  border-radius: 16px;
   display: block;
   flex-shrink: 0;
   object-fit: cover;
