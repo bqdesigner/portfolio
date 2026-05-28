@@ -19,7 +19,7 @@
       var a = e.target.closest && e.target.closest('a[href^="/blog"]');
       if (!a) return;
       try {
-        var theme = document.documentElement.getAttribute('data-theme') || 'dark';
+        var theme = document.documentElement.getAttribute('data-theme') || 'light';
         var u = new URL(a.getAttribute('href'), location.origin);
         u.searchParams.set('theme', theme);
         a.setAttribute('href', u.pathname + u.search + u.hash);
@@ -29,7 +29,7 @@
 
   function wireTheme() {
     var k = 'theme';
-    var current = localStorage.getItem(k) || 'dark';
+    var current = localStorage.getItem(k) || 'light';
     function apply(m) {
       localStorage.setItem(k, m);
       document.documentElement.setAttribute('data-theme', m);

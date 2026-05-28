@@ -29,29 +29,37 @@
   <meta name="theme-color" content="#FFFFFF" />
   <link rel="stylesheet" href="css/core.css" />
   <link rel="stylesheet" href="css/index.css" />
-  <script>(function(){try{var qt=new URLSearchParams(location.search).get('theme');if(qt==='light'||qt==='dark'){localStorage.setItem('theme',qt);var u=new URL(location.href);u.searchParams.delete('theme');history.replaceState(null,'',u.pathname+(u.search||'')+u.hash);}var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);var meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.setAttribute('content',t==='dark'?'#191819':'#FFFFFF');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
+  <script>(function(){try{var qt=new URLSearchParams(location.search).get('theme');if(qt==='light'||qt==='dark'){localStorage.setItem('theme',qt);var u=new URL(location.href);u.searchParams.delete('theme');history.replaceState(null,'',u.pathname+(u.search||'')+u.hash);}var t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t);var meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.setAttribute('content',t==='dark'?'#191819':'#FFFFFF');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
 </head>
-<body>
-
-  <div id="dot-pattern" class="dot-pattern" aria-hidden="true"></div>
+<body class="page-index">
 
   <!-- SKIP LINK -->
   <a href="#trabalhos" class="skip-link" data-i18n="skip">Pular para o conteúdo</a>
-
-  <div data-partial="header"></div>
 
   <h1 class="sr-only">Bruno Queirós - AI Product Designer</h1>
 
   <!-- HERO -->
   <section class="hero">
-    <p class="hero-eyebrow" data-i18n-page="hero.eyebrow">Hey, sou o Brunão</p>
-    <div class="hero-title-row hero-title-row--left">
-      <span class="hero-title-text"><span data-i18n-page="hero.title1.a">Product</span> <span data-i18n-page="hero.title1.b">Designer</span></span>
-      <span class="hero-title-shape hero-title-shape--right" aria-hidden="true"></span>
-    </div>
-    <div class="hero-title-row hero-title-row--right">
-      <span class="hero-title-shape hero-title-shape--left" aria-hidden="true"></span>
-      <span class="hero-title-text"><span data-i18n-page="hero.title2.a">10+ anos</span> <span data-i18n-page="hero.title2.b">de experiência</span></span>
+    <div class="hero-card">
+      <div data-partial="header"></div>
+      <div class="hero-content">
+        <div class="hero-left">
+        <h2 class="hero-title">
+          <span class="hero-title-line" data-i18n-page="hero.title.l1">Entre a execução</span>
+          <span class="hero-title-line"><span data-i18n-page="hero.title.l2">e a estratégia</span> <span class="hero-title-accent">/</span></span>
+        </h2>
+        <p class="hero-sub" data-i18n-page="hero.sub">Especialista em produtos de alta complexidade — Fintech. logística, saúde, streaming, cripto e muito mais. Transito entre estratégia e execução, da descoberta ao produto no ar, com excelência em craft.</p>
+      </div>
+        <div class="hero-img" aria-hidden="true">
+          <div class="hero-carrossel-track" id="heroCarrosselTrack">
+            <img src="assets/main/img-carrossel-1.png" alt="" width="458" height="726" />
+            <img src="assets/main/img-carrossel-2.png" alt="" width="458" height="726" />
+            <img src="assets/main/img-carrossel-3.png" alt="" width="458" height="726" />
+            <img src="assets/main/img-carrossel-4.png" alt="" width="458" height="726" />
+            <img src="assets/main/img-carrossel-5.png" alt="" width="458" height="726" />
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -230,7 +238,6 @@
   <script src="js/header.js"></script>
   <script src="js/main.js"></script>
   <script src="js/lang-switcher.js"></script>
-  <script src="js/dot-pattern.js"></script>
 
 </body>
 </html>

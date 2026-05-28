@@ -54,14 +54,9 @@
   // Page-specific translations keyed by page filename
   var pages = {
     'index.html': {
-      'hero.eyebrow': "Hey, I'm Brunão",
-      'hero.title1.a': 'Product',
-      'hero.title1.b': 'Designer',
-      'hero.title2.a': '10+ years',
-      'hero.title2.b': 'of experience',
-      'hero.line0': "I'm Bruno, also known as Brunão.",
-      'hero.line1': 'With over 10 years of design experience, I turn challenges into experiences that generate value.',
-      'hero.line2': 'Combining craft, AI, data, and strategy, I create solutions that connect users and businesses with real impact.',
+      'hero.title.l1': 'Between execution',
+      'hero.title.l2': 'and strategy',
+      'hero.sub': 'Specialist in high-complexity products — Fintech, logistics, healthcare, streaming, crypto and more. I move between strategy and execution, from discovery to product in production, with excellence in craft.',
       'project.fb.name': 'Fretebras - Freight Templates',
       'project.fb.desc': 'Reducing freight registration and publishing time by up to 70%.',
       'project.wc.name': 'WiseChat',

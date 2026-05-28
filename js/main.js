@@ -307,35 +307,70 @@ else document.addEventListener('partials-ready', initFooterCreditTypewriter);
   });
 })();
 
-// Hero intro: remove max-width/clip-path constraints after animation so wide
-// text (e.g. "DE EXPERIÊNCIA" on small viewports) isn't clipped. Uses
-// !important to override the animation's forwards-filled values (animation
-// origin outranks normal author styles in the cascade).
-document.querySelectorAll('.hero-title-text').forEach(function (el) {
-  el.addEventListener('animationend', function (e) {
-    if (e.animationName === 'hero-text-in') {
-      el.style.setProperty('max-width', 'none', 'important');
-      el.style.setProperty('clip-path', 'none', 'important');
+// Hero carrossel marquee — infinite scroll, same speed as logo marquee, pauses on hover
+(function() {
+  var track = document.getElementById('heroCarrosselTrack');
+  if (!track) return;
+  if (prefersReducedMotion) return;
+
+  var originalHTML = track.innerHTML;
+  track.innerHTML = originalHTML + originalHTML + originalHTML + originalHTML;
+
+  var speed = 0.5;
+  var paused = false;
+  var position = 0;
+  var rafId = null;
+  var singleSetWidth = 0;
+
+  track.parentElement.addEventListener('mouseenter', function() { paused = true; });
+  track.parentElement.addEventListener('mouseleave', function() { paused = false; });
+
+  function measureSet() {
+    var items = track.querySelectorAll('img');
+    var perSet = items.length / 4;
+    singleSetWidth = 0;
+    for (var i = 0; i < perSet; i++) {
+      singleSetWidth += items[i].offsetWidth + 24;
+    }
+  }
+
+  function animate() {
+    if (!paused) {
+      position += speed;
+      if (position >= 0) position -= singleSetWidth;
+      track.style.transform = 'translate3d(' + position + 'px, 0, 0)';
+    }
+    rafId = requestAnimationFrame(animate);
+  }
+
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+    } else {
+      if (!rafId) animate();
     }
   });
-});
 
-// Hero shape cover-on-scroll: --hero-cover (0→1) drives scaleX on shapes.
-(function () {
-  if (prefersReducedMotion) return;
-  var hero = document.querySelector('.hero');
-  if (!hero) return;
-  var rafId = null;
-  function update() {
-    rafId = null;
-    var h = hero.offsetHeight || 1;
-    var scrolled = Math.max(0, -hero.getBoundingClientRect().top);
-    var p = Math.min(scrolled / h, 1);
-    hero.style.setProperty('--hero-cover', p.toFixed(3));
+  function start() {
+    measureSet();
+    position = -singleSetWidth;
+    animate();
   }
-  window.addEventListener('scroll', function () {
-    if (rafId == null) rafId = requestAnimationFrame(update);
-  }, { passive: true });
-  window.addEventListener('resize', update);
-  update();
+
+  // Wait for images to load before measuring
+  var imgs = track.querySelectorAll('img');
+  var pending = imgs.length;
+  if (pending === 0) { start(); }
+  else {
+    imgs.forEach(function(img) {
+      if (img.complete) {
+        if (--pending === 0) start();
+      } else {
+        img.addEventListener('load', function() { if (--pending === 0) start(); });
+        img.addEventListener('error', function() { if (--pending === 0) start(); });
+      }
+    });
+  }
+
+  window.addEventListener('resize', measureSet);
 })();
