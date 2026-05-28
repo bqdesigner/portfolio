@@ -117,6 +117,10 @@ a {
   transition: opacity 0.3s, transform 0.3s;
 }
 
+body:has(.mobile-overlay--open) .logo {
+  position: fixed;
+}
+
 .logo svg {
   position: absolute;
 }
