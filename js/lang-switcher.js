@@ -56,7 +56,7 @@
     'index.html': {
       'hero.title.l1': 'Between execution',
       'hero.title.l2': 'and strategy',
-      'hero.sub': 'Specialist in high-complexity products — Fintech, logistics, healthcare, streaming, crypto and more. I move between strategy and execution, from discovery to product in production, with excellence in craft.',
+      'hero.sub': 'Specialist in high-complexity products — Banking, Fintech, logistics, healthcare, streaming, crypto and more. I move between strategy and execution, from discovery to product in production, with excellence in craft.',
       'project.fb.name': 'Fretebras - Freight Templates',
       'project.fb.desc': 'Reducing freight registration and publishing time by up to 70%.',
       'project.wc.name': 'WiseChat',

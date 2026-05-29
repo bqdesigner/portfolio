@@ -811,6 +811,7 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
   .about-me-inner {
     flex-direction: column;
     gap: 48px;
+    padding: 16px;
   }
 
   .about-me-left .case-section-text {

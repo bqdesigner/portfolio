@@ -761,9 +761,13 @@ body:has(.mobile-overlay--open) .logo {
     gap: 32px;
   }
 
-  .footer-cta-title,
-  .footer-cta-email {
+  .footer-cta-title {
     font-size: 28px;
+  }
+
+  .footer-cta-email {
+    font-size: clamp(16px, 6.2vw, 28px);
+    white-space: nowrap;
   }
 
   .footer-grid {
@@ -775,9 +779,13 @@ body:has(.mobile-overlay--open) .logo {
     padding: 80px 24px 48px;
   }
 
-  .case-footer .footer-cta-title,
-  .case-footer .footer-cta-email {
+  .case-footer .footer-cta-title {
     font-size: 28px;
+  }
+
+  .case-footer .footer-cta-email {
+    font-size: clamp(16px, 6.2vw, 28px);
+    white-space: nowrap;
   }
 
   .scroll-indicator {
