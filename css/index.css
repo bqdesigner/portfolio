@@ -322,6 +322,10 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
   transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+.project-card--raise img.project-img {
+  object-position: center 12%;
+}
+
 .project-card--link {
   cursor: pointer;
   display: block;
@@ -761,6 +765,10 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
     width: calc(100% - 24px);
     height: calc(100% - 24px);
     object-fit: cover;
+    object-position: left top;
+  }
+
+  .project-card--raise img.project-img {
     object-position: left top;
   }
 
