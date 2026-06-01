@@ -11,6 +11,15 @@
   position: relative;
 }
 
+@media (min-width: 1091px) {
+  .hero-card {
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+}
+
 [data-theme="dark"] .hero-card {
   background: var(--color-fixed-light);
 }
