@@ -107,18 +107,25 @@ export default function Footer() {
 
   function scrollTop(e) {
     e.preventDefault();
-    const start = window.scrollY || document.documentElement.scrollTop || 0;
+    const root = document.documentElement;
+    const body = document.body;
+    // O blog rola pelo body (html,body{height:100%}); por isso lemos e
+    // escrevemos nos três alvos possíveis.
+    const start = window.scrollY || root.scrollTop || body.scrollTop || 0;
     if (start <= 0) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       window.scrollTo(0, 0);
+      root.scrollTop = 0;
+      body.scrollTop = 0;
       return;
     }
 
     // Desliga o scroll-behavior:smooth global durante a animação, senão o
     // navegador re-anima a cada frame e atropela o nosso easing.
-    const root = document.documentElement;
-    const prevBehavior = root.style.scrollBehavior;
+    const prevRoot = root.style.scrollBehavior;
+    const prevBody = body.style.scrollBehavior;
     root.style.scrollBehavior = 'auto';
+    body.style.scrollBehavior = 'auto';
 
     const duration = Math.min(1000, Math.max(500, start * 0.6));
     const easeIn = (t) => t * t * t * t; // bem lento no início, acelera no fim
@@ -126,9 +133,12 @@ export default function Footer() {
     function step(now) {
       if (startTime === null) startTime = now;
       const p = Math.min(1, (now - startTime) / duration);
-      window.scrollTo(0, Math.round(start * (1 - easeIn(p))));
+      const y = Math.round(start * (1 - easeIn(p)));
+      window.scrollTo(0, y);
+      root.scrollTop = y;
+      body.scrollTop = y;
       if (p < 1) requestAnimationFrame(step);
-      else root.style.scrollBehavior = prevBehavior;
+      else { root.style.scrollBehavior = prevRoot; body.style.scrollBehavior = prevBody; }
     }
     requestAnimationFrame(step);
   }
