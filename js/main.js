@@ -28,13 +28,7 @@ function bindLogoSmoothScroll() {
 if (document.getElementById('logoLink')) bindLogoSmoothScroll();
 else document.addEventListener('partials-ready', bindLogoSmoothScroll);
 
-// Back to top smooth scroll (button lives in async-loaded footer partial)
-document.addEventListener('click', function (e) {
-  var btn = e.target.closest && e.target.closest('#backToTop');
-  if (!btn) return;
-  e.preventDefault();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+// Back to top: handler movido para js/back-to-top.js (compartilhado).
 
 // Header scroll, hamburger, closeMobileMenu live in partials/loader.js
 
