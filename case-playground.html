@@ -45,7 +45,9 @@
       <p class="case-section-text" data-i18n-page="case.desc">Explorações de diversos trabalhos feito ao longo dos anos.</p>
     </div>
 
-    <!-- Playground Grid -->
+    <!-- Playground Grid (slider horizontal no desktop) -->
+    <div class="playground-scroll">
+    <div class="playground-sticky">
     <div class="playground-grid">
       <!-- Imagem 1 -->
       <div class="case-img-full" style="background: #2D2620;">
@@ -131,6 +133,8 @@
         </div>
       </div>
     </div>
+    </div>
+    </div>
 
     <!-- Next Case -->
     <div class="next-case-wrapper">
@@ -163,6 +167,7 @@
   <script src="js/lang-switcher.js"></script>
   <script src="js/reading-progress.js"></script>
   <script src="js/footer-credit.js"></script>
+  <script src="js/playground-slider.js"></script>
   <script>
     document.addEventListener('click', function(e) {
       var btn = e.target.closest && e.target.closest('#backToTop');

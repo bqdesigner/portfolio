@@ -410,3 +410,47 @@
     height: 48px;
   }
 }
+
+/* ===== PLAYGROUND SLIDER HORIZONTAL (somente desktop) ===== */
+/* .is-slider é adicionado por playground-slider.js apenas no desktop sem
+   prefers-reduced-motion. Sem a classe, o grid vertical padrão permanece. */
+@media (min-width: 1091px) {
+  .playground-scroll.is-slider {
+    position: relative;
+    margin-top: 24px;
+  }
+
+  .playground-scroll.is-slider .playground-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .playground-scroll.is-slider .playground-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 24px;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0 0 0 48px;
+    will-change: transform;
+  }
+
+  .playground-scroll.is-slider .case-img-full {
+    flex: 0 0 100vw;
+    width: 100vw;
+    max-width: none;
+    height: 680px;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .playground-scroll.is-slider .case-img-placeholder {
+    height: 100%;
+  }
+}
