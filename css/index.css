@@ -56,11 +56,12 @@
   fill: var(--color-fixed-dark);
 }
 
-/* Overlay aberto: logo vira fixo e inverte cor (bg trocado) */
+/* Overlay aberto: logo vira fixo e inverte cor (bg trocado).
+   left alinhado ao padding do overlay (48px) pra bater com os itens do menu. */
 body:has(.mobile-overlay--open).page-index .logo {
   position: fixed;
   top: 43px;
-  left: 64px;
+  left: 48px;
 }
 
 body:has(.mobile-overlay--open).page-index .logo svg path,
@@ -710,7 +711,7 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
 
   body:has(.mobile-overlay--open).page-index .logo {
     top: 35px;
-    left: 32px;
+    left: 24px;
   }
 
   .hero-content {
@@ -861,4 +862,27 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
   .about-me-btn {
     font-size: 16px;
   }
+}
+
+/* ===== STACKING SCROLL (empilhamento das seções, desktop + responsivo) ===== */
+/* Cada camada gruda (sticky) e a próxima rola por cima, na ordem do DOM:
+   hero < projects < about-me < footer. Sem z-index: position:sticky já cria um
+   stacking context, então as camadas empilham na ordem do DOM (a posterior pinta
+   por cima). Justamente por isso o menu (header) NÃO pode ficar dentro do hero —
+   ficaria preso no stacking context do hero (camada de baixo) e seria coberto;
+   ele mora no topo do body (z-index:100) e fica sempre à frente.
+   js/index-stack.js define top = min(0, 100vh - altura): camadas mais altas que
+   a viewport grudam alinhadas embaixo (revelam todo o conteúdo antes de congelar);
+   camadas menores grudam no topo. */
+.stack-layer {
+  position: sticky;
+  top: 0;
+  background: var(--color-light);
+}
+
+/* Respiro no fim das seções cobertas: a próxima camada cobre espaço vazio antes
+   de chegar no conteúdo (senão o conteúdo da base corta na sobreposição). */
+.stack-projects,
+.about-me.stack-layer {
+  padding-bottom: 96px;
 }

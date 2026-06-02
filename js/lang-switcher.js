@@ -25,7 +25,7 @@
     'backtotop': 'take me to the top',
     'scroll.hint': 'Scroll to view',
     'projects.label.title': 'Selected cases',
-    'projects.label.year': '2023 → 2025',
+    'projects.label.year': '2020 → 2025',
     'projects.label.count': 'Projects / 05',
     'about.tagline': 'Between execution and strategy.',
     'about.label.title': 'Who is Bruno',

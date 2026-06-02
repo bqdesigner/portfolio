@@ -38,10 +38,15 @@
 
   <h1 class="sr-only">Bruno Queirós - AI Product Designer</h1>
 
+  <!-- Menu fora das camadas sticky: position:sticky cria stacking context e
+       prenderia o z-index do menu dentro do hero. No topo do body ele fica
+       sempre fixo e à frente. O logo é movido pra dentro do hero-card por
+       js/index-stack.js (rola junto com o hero). -->
+  <div data-partial="header"></div>
+
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero stack-layer">
     <div class="hero-card">
-      <div data-partial="header"></div>
       <div class="hero-content">
         <div class="hero-left">
         <h2 class="hero-title">
@@ -63,11 +68,14 @@
     </div>
   </section>
 
+  <!-- PROJECTS SHEET (stacking layer: section-label + content + marquee) -->
+  <div class="stack-layer stack-projects">
+
   <!-- SECTION LABEL: PROJECTS -->
   <div class="section-label" id="trabalhos">
     <span data-i18n="projects.label.count">Projetos / 05</span>
     <h2 data-i18n="projects.label.title">Cases selecionados</h2>
-    <span data-i18n="projects.label.year">2023 → 2025</span>
+    <span data-i18n="projects.label.year">2020 → 2025</span>
   </div>
 
   <!-- PROJECTS -->
@@ -179,9 +187,11 @@
       <img src="assets/logos/logo-wisechat.svg" alt="WiseChat" width="120" height="32" />
     </div>
   </section>
+  </div>
+  <!-- /stack-projects -->
 
   <!-- About Me -->
-  <section class="about-me" id="sobre">
+  <section class="about-me stack-layer" id="sobre">
     <div class="about-me-inner">
       <div class="about-me-left">
         <h2 class="case-section-title" data-i18n="about.tagline">Entre execução e estratégia.</h2>
@@ -232,13 +242,16 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <div data-partial="footer-cta"></div>
+  <!-- Footer (stacking layer) -->
+  <div class="stack-layer stack-footer">
+    <div data-partial="footer-cta"></div>
+  </div>
 
   <script src="js/loader.js"></script>
   <script src="js/header.js"></script>
   <script src="js/main.js"></script>
   <script src="js/back-to-top.js"></script>
+  <script src="js/index-stack.js"></script>
   <script src="js/lang-switcher.js"></script>
 
 </body>
