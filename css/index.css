@@ -5,7 +5,14 @@
 }
 
 .hero-card {
-  background: var(--color-fixed-dark);
+  background-color: var(--color-fixed-dark);
+  /* Imagem a ~40%: a cor de fundo (#191819) é sobreposta a 60% sobre a imagem.
+     (background-image não tem opacidade própria.) */
+  background-image: linear-gradient(rgba(25, 24, 25, 0.6), rgba(25, 24, 25, 0.6)),
+                    url('../assets/main/bg-index.png');
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
   border-radius: 12px;
   padding: 128px 24px 80px;
   position: relative;
@@ -18,10 +25,6 @@
     flex-direction: column;
     justify-content: flex-end;
   }
-}
-
-[data-theme="dark"] .hero-card {
-  background: var(--color-fixed-light);
 }
 
 .hero-content {
@@ -49,11 +52,6 @@
 .page-index .logo svg path,
 .page-index .logo svg rect {
   fill: var(--color-fixed-light);
-}
-
-[data-theme="dark"] .page-index .logo svg path,
-[data-theme="dark"] .page-index .logo svg rect {
-  fill: var(--color-fixed-dark);
 }
 
 /* Overlay aberto: logo vira fixo e inverte cor (bg trocado).
@@ -94,10 +92,6 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
   color: var(--color-fixed-light);
 }
 
-[data-theme="dark"] .hero-title {
-  color: var(--color-fixed-dark);
-}
-
 .hero-title-line {
   display: block;
 }
@@ -113,7 +107,8 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
   font-weight: 300;
   font-size: clamp(18px, 1.6vw, 24px);
   line-height: 1.5;
-  color: var(--color-muted);
+  /* Card é fixo escuro nos dois temas → muted constante (não usar var que flipa). */
+  color: #ADB5BD;
 }
 
 .hero-img {
@@ -122,15 +117,15 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
 
 /* Marquee de logos movido pra dentro do hero (abaixo da descrição). Zera as
    margens de 160px (eram pra quando ficava entre seções); o gap do hero-left
-   (24px) já dá o respiro. No tema light o hero-card é escuro → logos viram
-   brancos pra ficarem legíveis; no dark o card é claro e o cinza original serve. */
+   (24px) já dá o respiro. O hero-card é fixo escuro nos dois temas → logos
+   viram brancos (filtro) pra ficarem legíveis. */
 .hero .logo-marquee {
   margin: 40px 0 0;
   -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
   mask-image: linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
 }
 
-[data-theme="light"] .hero .logo-marquee-track img {
+.hero .logo-marquee-track img {
   filter: brightness(0) invert(1);
 }
 
