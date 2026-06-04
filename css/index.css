@@ -682,7 +682,7 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
   }
 
   .project-card {
-    aspect-ratio: 5 / 4.8;
+    aspect-ratio: 5 / 5.76;
     height: auto;
   }
 }
@@ -766,7 +766,7 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
   }
 
   .project-card {
-    aspect-ratio: 5 / 4.8;
+    aspect-ratio: 5 / 5.76;
     height: auto;
     max-width: 100%;
   }
