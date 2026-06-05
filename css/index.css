@@ -645,7 +645,7 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
   padding: 20px 0;
   border-bottom: 1px solid var(--color-low);
   align-items: baseline;
-  transition: padding-left .3s ease;
+  transition: translate .45s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: default;
 }
 
@@ -654,7 +654,17 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
 }
 
 .experience-item:hover {
-  padding-left: 6px;
+  translate: 6px 0;
+}
+
+/* reveal.js seta transform:none !important nesses itens, anulando hover via
+   transform. Usamos a propriedade `translate` (independente de transform) e
+   re-declaramos a transição acima do reveal (specificity 0,3,0) pra incluir
+   translate sem perder o fade-up de entrada. */
+.js-reveal .experience-list > .experience-item {
+  transition: opacity 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+              translate .45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .exp-company {
