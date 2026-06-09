@@ -1,5 +1,12 @@
 {
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/design-to-code/:project",
+      "destination": "/design-to-code/:project/",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/blog",
