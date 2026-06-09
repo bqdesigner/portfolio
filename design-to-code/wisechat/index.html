@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wisechat — Todas as suas conversas em um só lugar</title>
+<meta name="description" content="O Wisechat reúne WhatsApp, InfoJobs e todos os seus canais em uma caixa de entrada só. Atenda, organize contatos, gerencie negócios no Kanban e acompanhe resultados em tempo real." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ============ background fx ============ -->
+<div class="bg-fx" aria-hidden="true">
+  <div class="mesh"></div>
+  <div class="grid"></div>
+</div>
+
+<!-- ============ logo template (inline svg, reused) ============ -->
+<template id="logo-svg">
+  <svg class="logo" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs><linearGradient id="lg" x1="0" y1="0" x2="40" y2="40">
+      <stop offset="0" stop-color="#3db8ff"/><stop offset="1" stop-color="#1ca4f2"/>
+    </linearGradient></defs>
+    <path d="M7 9.5A4.5 4.5 0 0 1 11.5 5h14A4.5 4.5 0 0 1 30 9.5v8A4.5 4.5 0 0 1 25.5 22H16l-6 5v-5h-.5A4.5 4.5 0 0 1 5 17.5v-8Z" fill="none" stroke="url(#lg)" stroke-width="2.4" stroke-linejoin="round"/>
+    <path d="M14 16.5A4.5 4.5 0 0 1 18.5 12h14A4.5 4.5 0 0 1 37 16.5v8A4.5 4.5 0 0 1 32.5 29H32v5l-6-5h-7.5A4.5 4.5 0 0 1 14 24.5v-8Z" fill="none" stroke="url(#lg)" stroke-width="2.4" stroke-linejoin="round"/>
+  </svg>
+</template>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top"><span data-logo></span><span class="wm">Wise<b>chat</b></span></a>
+    <div class="nav-links">
+      <a href="#recursos">Recursos</a>
+      <a href="#integracoes">Integrações</a>
+      <a href="#como">Como funciona</a>
+      <a href="#precos">Preços</a>
+    </div>
+    <div class="nav-cta">
+      <a class="ghost" href="#">Entrar</a>
+      <a class="btn" href="#precos">Começar grátis <span class="arrow">→</span></a>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <h1 class="reveal">Todas as suas conversas<br/>em <span class="grad-txt">um só lugar.</span></h1>
+    <p class="sub reveal" data-d="2">WhatsApp, InfoJobs, Instagram, e-mail. O Wisechat concentra todos os seus canais em uma caixa de entrada única. Atenda mais rápido, organize contatos, gerencie negócios no Kanban e acompanhe cada resultado em tempo real.</p>
+    <div class="hero-cta reveal" data-d="3">
+      <a class="btn lg" href="#precos">Começar grátis <span class="arrow">→</span></a>
+      <a class="btn lg outline" href="#recursos">Ver a plataforma</a>
+    </div>
+    <div class="trust reveal" data-d="3">
+      <div class="avs">
+        <span style="--g:linear-gradient(135deg,#8b7dff,#c026d3)">MF<img src="assets/avatar-mariana.png" alt="" loading="lazy" /></span>
+        <span style="--g:linear-gradient(135deg,#6d5df6,#1ca4f2)">BQ<img src="assets/avatar-bruno.png" alt="" loading="lazy" /></span>
+        <span style="--g:linear-gradient(135deg,#c026d3,#ff7a59)">RP<img src="assets/avatar-rodrigo.png" alt="" loading="lazy" /></span>
+        <span style="--g:linear-gradient(135deg,#3ddc84,#1ca4f2)">AC<img src="assets/avatar-augusto.png" alt="" loading="lazy" /></span>
+      </div>
+      <div class="trust-txt"><b>4,9/5</b> de satisfação<i></i><b>200+</b> equipes operando hoje</div>
+    </div>
+
+    <!-- product stage -->
+    <div class="stage reveal" data-d="4">
+      <div class="stage-glow"></div>
+
+      <div class="chip chip-1">
+        <span class="ic" style="background:rgba(61,220,132,.16);color:#3ddc84"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.9.9-2.8-.2-.3A8 8 0 1 1 12 20Z"/></svg></span>
+        <div><small>WhatsApp</small><b>+128 novas</b></div>
+      </div>
+      <div class="chip chip-2">
+        <span class="ic" style="background:rgba(109,93,246,.18);color:#8b7dff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg></span>
+        <div><small>Tempo de 1ª resposta</small><b>-63% no mês</b></div>
+      </div>
+      <div class="chip chip-3">
+        <span class="ic" style="background:rgba(28,164,242,.18);color:#3db8ff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></span>
+        <div><small>CSAT da equipe</small><b>4,9 / 5,0</b></div>
+      </div>
+
+      <div class="hero-stage-tilt">
+        <div class="frame">
+          <div class="bar"><i></i><i></i><i></i><span class="url">app.wisechat.com / conversas</span></div>
+          <img src="assets/screen-inbox.png" alt="Caixa de entrada unificada do Wisechat com conversas de WhatsApp e InfoJobs" />
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ FEATURES BENTO ============ -->
+<section class="sec" id="recursos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2 class="one-line">Pare de pular entre <span class="grad-txt">dez abas abertas</span></h2>
+      <p>Atendimento, contatos, negócios e relatórios convivem no mesmo lugar, com o contexto completo de cada pessoa sempre à mão.</p>
+    </div>
+
+    <div class="bento">
+      <!-- wide: caixa unificada -->
+      <article class="card col-4 reveal">
+        <div class="pad">
+          <h3>Cada canal numa caixa de entrada só</h3>
+          <p>Times, marcadores e filtros mantêm tudo organizado. Responda, transfira e finalize sem nunca perder o fio da conversa, não importa de onde a mensagem chegou.</p>
+        </div>
+        <div class="shot framed"><img src="assets/screen-inbox.png" alt="Tela de conversas do Wisechat" /></div>
+      </article>
+
+      <!-- tall mini: multicanal -->
+      <article class="card col-2 mini reveal" data-d="1">
+        <span class="ic-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></span>
+        <h3>Multicanal de verdade</h3>
+        <p>Conecte WhatsApp, InfoJobs, Instagram, e-mail e webchat. Adicione novas caixas em segundos e distribua para as equipes certas.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:18px">
+          <span class="intg" style="padding:8px 12px;font-size:13px"><span class="glyph" style="width:24px;height:24px;font-size:11px;background:#25d366" data-l="Wa"><img src="https://cdn.simpleicons.org/whatsapp/white" alt="" /></span>WhatsApp</span>
+          <span class="intg" style="padding:8px 12px;font-size:13px"><span class="glyph" style="width:24px;height:24px;font-size:11px;background:linear-gradient(135deg,#feda75,#d62976,#962fbf)" data-l="Ig"><img src="https://cdn.simpleicons.org/instagram/white" alt="" /></span>Instagram</span>
+        </div>
+      </article>
+
+      <!-- contatos -->
+      <article class="card col-3 reveal">
+        <div class="pad">
+          <h3>Uma base de contatos viva</h3>
+          <p>Importe, segmente por marcadores coloridos e abra qualquer histórico sem sair da tela. Empresa, telefone, cidade e cada interação registrada.</p>
+        </div>
+        <div class="shot framed"><img src="assets/screen-contacts.png" alt="Tela de contatos do Wisechat" /></div>
+      </article>
+
+      <!-- kanban -->
+      <article class="card col-3 reveal" data-d="1">
+        <div class="pad">
+          <h3>Do primeiro contato ao fechamento</h3>
+          <p>Arraste cada negócio entre as etapas do funil, dispare ações e converse direto pelo card. Nada de planilha paralela para acompanhar vendas.</p>
+        </div>
+        <div class="shot framed"><img src="assets/screen-kanban.png" alt="Kanban de negócios do Wisechat" /></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INSIGHTS (interactive) ============ -->
+<section class="sec" id="produto" style="padding-top:24px">
+  <div class="di-track">
+  <div class="wrap di-stage">
+    <div class="sec-head left reveal" style="max-width:780px">
+      <h2>Tudo que sua operação precisa, <span class="grad-txt">por dentro</span></h2>
+      <p>Escolha uma área e veja a plataforma em ação.</p>
+    </div>
+
+    <div class="di reveal" data-d="1">
+      <div class="di-list">
+        <button class="di-item active" data-i="0" data-url="app.wisechat.com / relatórios" aria-expanded="true">
+          <div class="di-row"><span class="di-n">01</span><span class="di-t">Relatórios em tempo real</span><span class="di-chev"></span></div>
+          <div class="di-body"><div class="di-inner">
+            <p>Volume de conversas, não atendidas, status dos atendentes, tráfego por horário e CSAT. Tudo atualizado e pronto para exportar.</p>
+            <div class="di-tags"><span>Tráfego por hora</span><span>Por atendente</span><span>CSAT &amp; SLA</span></div>
+          </div></div>
+        </button>
+
+        <button class="di-item" data-i="1" data-url="app.wisechat.com / agendar" aria-expanded="false">
+          <div class="di-row"><span class="di-n">02</span><span class="di-t">Agenda dentro do chat</span><span class="di-chev"></span></div>
+          <div class="di-body"><div class="di-inner">
+            <p>Marque entrevistas, reuniões e follow-ups direto na conversa. O contato escolhe data e horário, e tudo fica no histórico. Sem link externo.</p>
+            <div class="di-tags"><span>Calendário no atendimento</span><span>Respostas rápidas</span><span>Áudio &amp; anexos</span></div>
+          </div></div>
+        </button>
+
+        <button class="di-item" data-i="2" data-url="app.wisechat.com / contato" aria-expanded="false">
+          <div class="di-row"><span class="di-n">03</span><span class="di-t">Perfil 360° do contato</span><span class="di-chev"></span></div>
+          <div class="di-body"><div class="di-inner">
+            <p>Perfil, empresa, documentos, ticket médio e uma linha do tempo de tudo que aconteceu. Cada automação e alteração registrada: quem fez, e quando.</p>
+            <div class="di-tags"><span>Histórico completo</span><span>Ticket &amp; ciclo</span><span>Campos personalizados</span></div>
+          </div></div>
+        </button>
+
+        <button class="di-item" data-i="3" data-url="app.wisechat.com / conta" aria-expanded="false">
+          <div class="di-row"><span class="di-n">04</span><span class="di-t">Sua conta, do seu jeito</span><span class="di-chev"></span></div>
+          <div class="di-body"><div class="di-inner">
+            <p>Defina disponibilidade, troque de conta, ajuste o tema e use atalhos de teclado. Cada atendente trabalha do jeito que rende mais.</p>
+            <div class="di-tags"><span>Status &amp; presença</span><span>Temas</span><span>Atalhos</span></div>
+          </div></div>
+        </button>
+      </div>
+
+      <div class="di-media">
+        <div class="di-glow"></div>
+        <div class="frame">
+          <div class="bar"><i></i><i></i><i></i><span class="url" data-di-url>app.wisechat.com / relatórios</span></div>
+          <div class="di-shots">
+            <img class="active" src="assets/screen-reports.png" alt="Painel de relatórios do Wisechat" />
+            <img src="assets/screen-schedule.png" alt="Agendamento dentro do chat do Wisechat" />
+            <img src="assets/screen-profile.png" alt="Perfil e histórico do contato no Wisechat" />
+            <img src="assets/screen-account.png" alt="Configurações de conta no Wisechat" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- ============ INTEGRATIONS ============ -->
+<section class="sec" id="integracoes" style="padding-top:40px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Conecte os canais que<br/><span class="grad-txt">seus clientes já usam</span></h2>
+      <p>Plugue suas contas em minutos e centralize tudo. Quando um novo canal surge, ele entra na mesma caixa de entrada.</p>
+    </div>
+  </div>
+  <div class="wrap reveal" data-d="1">
+    <div class="marquee-mask">
+      <div class="marquee">
+        <span class="intg"><span class="glyph" style="background:#25d366" data-l="Wa"><img src="https://cdn.simpleicons.org/whatsapp/white" alt="" /></span>WhatsApp</span>
+        <span class="intg"><span class="glyph" style="background:linear-gradient(135deg,#feda75,#d62976,#962fbf)" data-l="Ig"><img src="https://cdn.simpleicons.org/instagram/white" alt="" /></span>Instagram</span>
+        <span class="intg"><span class="glyph" style="background:#0084ff" data-l="Me"><img src="https://cdn.simpleicons.org/messenger/white" alt="" /></span>Messenger</span>
+        <span class="intg"><span class="glyph" style="background:#229ed9" data-l="Tg"><img src="https://cdn.simpleicons.org/telegram/white" alt="" /></span>Telegram</span>
+        <span class="intg"><span class="glyph" style="background:#ea4335" data-l="Gm"><img src="https://cdn.simpleicons.org/gmail/white" alt="" /></span>Gmail</span>
+        <span class="intg"><span class="glyph" style="background:#1877f2" data-l="Fb"><img src="https://cdn.simpleicons.org/facebook/white" alt="" /></span>Facebook</span>
+        <span class="intg"><span class="glyph" style="background:#7360f2" data-l="Vb"><img src="https://cdn.simpleicons.org/viber/white" alt="" /></span>Viber</span>
+        <span class="intg"><span class="glyph" style="background:#5865f2" data-l="Dc"><img src="https://cdn.simpleicons.org/discord/white" alt="" /></span>Discord</span>
+        <!-- dup -->
+        <span class="intg"><span class="glyph" style="background:#25d366" data-l="Wa"><img src="https://cdn.simpleicons.org/whatsapp/white" alt="" /></span>WhatsApp</span>
+        <span class="intg"><span class="glyph" style="background:linear-gradient(135deg,#feda75,#d62976,#962fbf)" data-l="Ig"><img src="https://cdn.simpleicons.org/instagram/white" alt="" /></span>Instagram</span>
+        <span class="intg"><span class="glyph" style="background:#0084ff" data-l="Me"><img src="https://cdn.simpleicons.org/messenger/white" alt="" /></span>Messenger</span>
+        <span class="intg"><span class="glyph" style="background:#229ed9" data-l="Tg"><img src="https://cdn.simpleicons.org/telegram/white" alt="" /></span>Telegram</span>
+        <span class="intg"><span class="glyph" style="background:#ea4335" data-l="Gm"><img src="https://cdn.simpleicons.org/gmail/white" alt="" /></span>Gmail</span>
+        <span class="intg"><span class="glyph" style="background:#1877f2" data-l="Fb"><img src="https://cdn.simpleicons.org/facebook/white" alt="" /></span>Facebook</span>
+        <span class="intg"><span class="glyph" style="background:#7360f2" data-l="Vb"><img src="https://cdn.simpleicons.org/viber/white" alt="" /></span>Viber</span>
+        <span class="intg"><span class="glyph" style="background:#5865f2" data-l="Dc"><img src="https://cdn.simpleicons.org/discord/white" alt="" /></span>Discord</span>
+      </div>
+    </div>
+    <div class="marquee-mask">
+      <div class="marquee rev">
+        <span class="intg"><span class="glyph" style="background:#ff7a59" data-l="Hs"><img src="https://cdn.simpleicons.org/hubspot/white" alt="" /></span>HubSpot</span>
+        <span class="intg"><span class="glyph" style="background:#e42527" data-l="Zo"><img src="https://cdn.simpleicons.org/zoho/white" alt="" /></span>Zoho</span>
+        <span class="intg"><span class="glyph" style="background:#03363d" data-l="Zd"><img src="https://cdn.simpleicons.org/zendesk/white" alt="" /></span>Zendesk</span>
+        <span class="intg"><span class="glyph" style="background:#ff4f00" data-l="Zp"><img src="https://cdn.simpleicons.org/zapier/white" alt="" /></span>Zapier</span>
+        <span class="intg"><span class="glyph" style="background:#4285f4" data-l="GA"><img src="https://cdn.simpleicons.org/googlecalendar/white" alt="" /></span>Google Agenda</span>
+        <span class="intg"><span class="glyph" style="background:#34a853" data-l="GS"><img src="https://cdn.simpleicons.org/googlesheets/white" alt="" /></span>Google Sheets</span>
+        <span class="intg"><span class="glyph" style="background:#1f8ded" data-l="Ic"><img src="https://cdn.simpleicons.org/intercom/white" alt="" /></span>Intercom</span>
+        <span class="intg"><span class="glyph" style="background:#0052cc" data-l="Tr"><img src="https://cdn.simpleicons.org/trello/white" alt="" /></span>Trello</span>
+        <!-- dup -->
+        <span class="intg"><span class="glyph" style="background:#ff7a59" data-l="Hs"><img src="https://cdn.simpleicons.org/hubspot/white" alt="" /></span>HubSpot</span>
+        <span class="intg"><span class="glyph" style="background:#e42527" data-l="Zo"><img src="https://cdn.simpleicons.org/zoho/white" alt="" /></span>Zoho</span>
+        <span class="intg"><span class="glyph" style="background:#03363d" data-l="Zd"><img src="https://cdn.simpleicons.org/zendesk/white" alt="" /></span>Zendesk</span>
+        <span class="intg"><span class="glyph" style="background:#ff4f00" data-l="Zp"><img src="https://cdn.simpleicons.org/zapier/white" alt="" /></span>Zapier</span>
+        <span class="intg"><span class="glyph" style="background:#4285f4" data-l="GA"><img src="https://cdn.simpleicons.org/googlecalendar/white" alt="" /></span>Google Agenda</span>
+        <span class="intg"><span class="glyph" style="background:#34a853" data-l="GS"><img src="https://cdn.simpleicons.org/googlesheets/white" alt="" /></span>Google Sheets</span>
+        <span class="intg"><span class="glyph" style="background:#1f8ded" data-l="Ic"><img src="https://cdn.simpleicons.org/intercom/white" alt="" /></span>Intercom</span>
+        <span class="intg"><span class="glyph" style="background:#0052cc" data-l="Tr"><img src="https://cdn.simpleicons.org/trello/white" alt="" /></span>Trello</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="sec" style="padding-top:30px">
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat reveal"><div class="n" data-to="63" data-suf="%">0</div><div class="l">menos tempo até a 1ª resposta</div></div>
+      <div class="stat reveal" data-d="1"><div class="n" data-pre="" data-to="8" data-suf="+">0</div><div class="l">canais numa caixa só</div></div>
+      <div class="stat reveal" data-d="2"><div class="n" data-to="1699">0</div><div class="l">conversas/dia por operação</div></div>
+      <div class="stat reveal" data-d="3"><div class="n" data-pre="" data-to="4.9" data-dec="1">0</div><div class="l">CSAT médio das equipes</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPARISON ============ -->
+<section class="sec" style="padding-top:30px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Por que trocar o<br/><span class="grad-txt">quebra-cabeça de apps</span></h2>
+      <p>O que custa caro não é a ferramenta. É o tempo perdido alternando entre elas.</p>
+    </div>
+
+    <div class="compare reveal" data-d="1">
+      <div class="compare-row compare-head">
+        <div class="h-feat">Recurso</div>
+        <div class="h-us"><b>Wisechat</b></div>
+        <div class="h-them">Apps separados</div>
+      </div>
+      <div class="compare-row">
+        <div class="feat">Caixa de entrada para todos os canais</div>
+        <div class="us"><span class="yes"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span></div>
+        <div class="them"><span class="no"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6 6 18M6 6l12 12"/></svg></span></div>
+      </div>
+      <div class="compare-row">
+        <div class="feat">Contatos, conversas e negócios conectados</div>
+        <div class="us"><span class="yes"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span></div>
+        <div class="them"><span class="no"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6 6 18M6 6l12 12"/></svg></span></div>
+      </div>
+      <div class="compare-row">
+        <div class="feat">Kanban de vendas com conversa no card</div>
+        <div class="us"><span class="yes"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span></div>
+        <div class="them"><span class="no"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6 6 18M6 6l12 12"/></svg></span></div>
+      </div>
+      <div class="compare-row">
+        <div class="feat">Relatórios de equipe em tempo real</div>
+        <div class="us"><span class="yes"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span></div>
+        <div class="them"><span class="no"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6 6 18M6 6l12 12"/></svg></span></div>
+      </div>
+      <div class="compare-row">
+        <div class="feat">Tudo numa mensalidade só</div>
+        <div class="us"><span class="yes"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span></div>
+        <div class="them"><span class="no"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6 6 18M6 6l12 12"/></svg></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="sec" style="padding-top:40px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2 class="one-line">Equipes que <span class="grad-txt">respiram aliviadas</span></h2>
+    </div>
+  </div>
+  <div class="wrap reveal" data-d="1">
+    <div class="marquee-mask">
+      <div class="marquee" style="animation-duration:46s">
+        <div class="tcard"><span class="stars">★★★★★</span><p>"Tínhamos quatro celulares e três planilhas. Hoje é uma tela só. O tempo de resposta despencou e ninguém mais perde lead."</p><div class="who"><span class="av">MF<img src="assets/avatar-mariana.png" alt="" loading="lazy" /></span><div><b>Mariana Ferrari</b><small>Head de Vendas · Wisefield</small></div></div></div>
+        <div class="tcard"><span class="stars">★★★★★</span><p>"Para hunting de prestadores é perfeito: vejo o perfil do InfoJobs, converso no WhatsApp e agendo a entrevista sem sair do chat."</p><div class="who"><span class="av">BQ<img src="assets/avatar-bruno.png" alt="" loading="lazy" /></span><div><b>Bruno Queirós</b><small>Recrutamento · FieldCorp</small></div></div></div>
+        <div class="tcard"><span class="stars">★★★★★</span><p>"O Kanban com a conversa dentro do card mudou nossa operação de logística. Cada negócio anda sozinho pelo funil."</p><div class="who"><span class="av">RP<img src="assets/avatar-rodrigo.png" alt="" loading="lazy" /></span><div><b>Rodrigo Paranhos</b><small>Operações · Motion Logística</small></div></div></div>
+        <div class="tcard"><span class="stars">★★★★★</span><p>"Os relatórios por atendente acabaram com a discussão de produtividade. Agora é dado na mesa, não opinião."</p><div class="who"><span class="av">AC<img src="assets/avatar-augusto.png" alt="" loading="lazy" /></span><div><b>Augusto César</b><small>Suporte · L2B</small></div></div></div>
+        <!-- dup -->
+        <div class="tcard"><span class="stars">★★★★★</span><p>"Tínhamos quatro celulares e três planilhas. Hoje é uma tela só. O tempo de resposta despencou e ninguém mais perde lead."</p><div class="who"><span class="av">MF<img src="assets/avatar-mariana.png" alt="" loading="lazy" /></span><div><b>Mariana Ferrari</b><small>Head de Vendas · Wisefield</small></div></div></div>
+        <div class="tcard"><span class="stars">★★★★★</span><p>"Para hunting de prestadores é perfeito: vejo o perfil do InfoJobs, converso no WhatsApp e agendo a entrevista sem sair do chat."</p><div class="who"><span class="av">BQ<img src="assets/avatar-bruno.png" alt="" loading="lazy" /></span><div><b>Bruno Queirós</b><small>Recrutamento · FieldCorp</small></div></div></div>
+        <div class="tcard"><span class="stars">★★★★★</span><p>"O Kanban com a conversa dentro do card mudou nossa operação de logística. Cada negócio anda sozinho pelo funil."</p><div class="who"><span class="av">RP<img src="assets/avatar-rodrigo.png" alt="" loading="lazy" /></span><div><b>Rodrigo Paranhos</b><small>Operações · Motion Logística</small></div></div></div>
+        <div class="tcard"><span class="stars">★★★★★</span><p>"Os relatórios por atendente acabaram com a discussão de produtividade. Agora é dado na mesa, não opinião."</p><div class="who"><span class="av">AC<img src="assets/avatar-augusto.png" alt="" loading="lazy" /></span><div><b>Augusto César</b><small>Suporte · L2B</small></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="sec" id="como" style="padding-top:40px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>No ar em <span class="grad-txt">quatro passos</span></h2>
+      <p>Sem migração complicada nem semanas de implantação. Você conecta e já começa a atender.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="num">1</div><h4>Conecte seus canais</h4><p>Plugue WhatsApp, InfoJobs, Instagram e e-mail em poucos cliques.</p><span class="step-line"></span></div>
+      <div class="step reveal" data-d="1"><div class="num">2</div><h4>Monte equipes</h4><p>Crie times, caixas e marcadores para distribuir as conversas automaticamente.</p><span class="step-line"></span></div>
+      <div class="step reveal" data-d="2"><div class="num">3</div><h4>Atenda e venda</h4><p>Responda, agende e mova negócios no Kanban, tudo no mesmo lugar.</p><span class="step-line"></span></div>
+      <div class="step reveal" data-d="3"><div class="num">4</div><h4>Acompanhe e escale</h4><p>Use os relatórios para ajustar a operação e crescer com previsibilidade.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="sec" id="precos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Preço que <span class="grad-txt">cabe na operação</span></h2>
+      <p>Comece de graça e cresça quando fizer sentido. Sem fidelidade, sem surpresa.</p>
+    </div>
+    <div class="prices">
+      <div class="price reveal">
+        <div class="tier">Início</div>
+        <div class="desc">Para times pequenos validando o atendimento centralizado.</div>
+        <div class="amt"><small>R$</small>0</div>
+        <div class="per">para sempre · até 2 atendentes</div>
+        <ul>
+          <li><span class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></span> 1 canal conectado</li>
+          <li><span class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></span> Caixa unificada + marcadores</li>
+          <li><span class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></span> Contatos ilimitados</li>
+        </ul>
+        <a class="btn outline" href="#">Começar grátis</a>
+      </div>
+
+      <div class="price pop reveal" data-d="1">
+        <div class="badge">Mais escolhido</div>
+        <div class="tier">Crescimento</div>
+        <div class="desc">Para equipes de vendas e suporte que vivem no atendimento.</div>
+        <div class="amt"><small>R$</small>89<small>/mês</small></div>
+        <div class="per">por atendente · cobrança anual</div>
+        <ul>
+          <li><span class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></span> Canais ilimitados</li>
+          <li><span class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></span> Kanban de negócios + agenda no chat</li>
+          <li><span class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></span> Relatórios e CSAT em tempo real</li>
+          <li><span class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></span> Automações e regras de SLA</li>
+        </ul>
+        <a class="btn" href="#">Testar 14 dias grátis</a>
+      </div>
+
+      <div class="price reveal" data-d="2">
+        <div class="tier">Escala</div>
+        <div class="desc">Para operações grandes com governança e volume alto.</div>
+        <div class="amt">Sob<small> medida</small></div>
+        <div class="per">faturamento e onboarding dedicados</div>
+        <ul>
+          <li><span class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></span> Tudo do Crescimento</li>
+          <li><span class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></span> API aberta + webhooks</li>
+          <li><span class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></span> SSO e permissões avançadas</li>
+          <li><span class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></span> Gerente de sucesso dedicado</li>
+        </ul>
+        <a class="btn outline" href="#">Falar com vendas</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="sec" style="padding-top:20px">
+  <div class="wrap">
+    <div class="final reveal">
+      <canvas id="centralCanvas" class="central-canvas" aria-hidden="true"></canvas>
+      <div class="final-inner">
+        <h2>Suas conversas merecem<br/>um <span class="grad-txt">só endereço.</span></h2>
+        <p>Centralize o atendimento, organize os contatos e feche mais negócios. Tudo dentro do Wisechat, começando hoje e de graça.</p>
+        <div class="hero-cta">
+          <a class="btn lg" href="#precos">Criar conta grátis <span class="arrow">→</span></a>
+          <a class="btn lg outline" href="#">Agendar uma demo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-cta reveal">
+      <div class="foot-cta-l">
+        <a class="brand" href="#top"><span data-logo></span><span class="wm">Wise<b>chat</b></span></a>
+        <h3>Comece a centralizar<br/>seu atendimento hoje.</h3>
+      </div>
+      <div class="foot-cta-r">
+        <p>Tudo o que sua equipe precisa para atender, organizar e vender em um só lugar.</p>
+        <a class="btn lg" href="#precos">Começar grátis <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <div class="foot-divider"></div>
+
+    <div class="foot-grid">
+      <div class="foot-col">
+        <h5>Produto</h5>
+        <a href="#recursos">Recursos</a>
+        <a href="#produto">Plataforma</a>
+        <a href="#integracoes">Integrações</a>
+        <a href="#precos">Preços</a>
+      </div>
+      <div class="foot-col">
+        <h5>Empresa</h5>
+        <a href="#">Sobre</a>
+        <a href="#">Blog</a>
+        <a href="#">Carreiras <span class="hiring">Contratando</span></a>
+        <a href="#">Contato</a>
+      </div>
+      <div class="foot-col">
+        <h5>Casos de uso</h5>
+        <a href="#">Vendas</a>
+        <a href="#">Suporte</a>
+        <a href="#">Logística</a>
+        <a href="#">Recrutamento</a>
+      </div>
+      <div class="foot-col">
+        <h5>Recursos</h5>
+        <a href="#">Central de ajuda</a>
+        <a href="#">Status</a>
+        <a href="#">API &amp; docs</a>
+        <a href="#">Segurança</a>
+      </div>
+    </div>
+
+    <div class="foot-divider"></div>
+
+    <div class="foot-bot">
+      <div class="foot-legal">
+        <a href="#">Termos &amp; Condições</a>
+        <a href="#">Política de Privacidade</a>
+      </div>
+      <div class="foot-soc">
+        <a href="#" aria-label="LinkedIn"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0ZM.5 8h4V24h-4V8Zm7 0h3.8v2.2h.05c.53-1 1.83-2.2 3.77-2.2 4.03 0 4.78 2.65 4.78 6.1V24h-4v-7.1c0-1.7-.03-3.9-2.37-3.9-2.38 0-2.74 1.85-2.74 3.77V24h-4V8Z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="X"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.5 8.6L23 22h-6.6l-5.2-6.8L5.3 22H2.2l8-9.2L1.5 2h6.8l4.7 6.2L18.9 2Zm-1.2 18h1.7L7 3.7H5.2L17.7 20Z"/></svg></a>
+      </div>
+      <span class="foot-made">© <span id="yr">2025</span> Wisechat. Feito no Brasil.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // inject logo svg into all placeholders
+  (function(){
+    var tpl = document.getElementById('logo-svg');
+    document.querySelectorAll('[data-logo]').forEach(function(slot){
+      slot.replaceWith(tpl.content.cloneNode(true));
+    });
+  })();
+</script>
+<script src="app.js"></script>
+</body>
+</html>
