@@ -705,11 +705,3 @@
 @media (max-width: 900px) {
   .fl-payment-card.highlight { order: -1; }
 }
-
-/* Dark mode: lift motorista-vip card off body bg (both are #191819) */
-[data-theme="dark"] .project-card[href*="motorista-vip"] {
-  background: var(--color-low) !important;
-}
-[data-theme="dark"] .project-card[href*="motorista-vip"] .project-info {
-  background: rgba(42, 42, 42, 0.7) !important;
-}

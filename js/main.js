@@ -102,14 +102,6 @@ else document.addEventListener('partials-ready', bindLogoSmoothScroll);
   setTimeout(showNext, delay);
 })();
 
-// Disable link navigation on project cards (cases not ready), except linked ones
-document.querySelectorAll('.project-card:not(.project-card--link)').forEach(function(card) {
-  card.style.cursor = 'default';
-  card.addEventListener('click', function(e) {
-    e.preventDefault();
-  });
-});
-
 // Footer credit typewriter — triggers when footer scrolls into view
 function initFooterCreditTypewriter() {
   var footerEl = document.getElementById('footerCredit');

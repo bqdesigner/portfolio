@@ -312,7 +312,7 @@
 }
 
 /* ===== RESPONSIVE: MOBILE ===== */
-@media (max-width: 1090px) {
+@media (max-width: 767px) {
   .case-page {
     padding-top: 200px;
   }
@@ -414,7 +414,7 @@
 /* ===== PLAYGROUND SLIDER HORIZONTAL (somente desktop) ===== */
 /* .is-slider é adicionado por playground-slider.js apenas no desktop sem
    prefers-reduced-motion. Sem a classe, o grid vertical padrão permanece. */
-@media (min-width: 1091px) {
+@media (min-width: 768px) {
   .playground-scroll.is-slider {
     position: relative;
     margin-top: 24px;

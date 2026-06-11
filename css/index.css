@@ -6,19 +6,12 @@
 
 .hero-card {
   background-color: var(--color-fixed-dark);
-  /* Imagem a ~40%: a cor de fundo (#191819) é sobreposta a 60% sobre a imagem.
-     (background-image não tem opacidade própria.) */
-  background-image: linear-gradient(rgba(25, 24, 25, 0.6), rgba(25, 24, 25, 0.6)),
-                    url('../assets/main/bg-index.png');
-  background-size: cover;
-  background-position: center bottom;
-  background-repeat: no-repeat;
   border-radius: 12px;
   padding: 128px 24px 80px;
   position: relative;
 }
 
-@media (min-width: 1091px) {
+@media (min-width: 768px) {
   .hero-card {
     min-height: 85vh;
     display: flex;
@@ -360,215 +353,232 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
 }
 
 /* ===== CONTENT / PROJECTS ===== */
-.content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
+.cases {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   padding: 64px 16px;
 }
 
-/* ===== PROJECT CARD ===== */
-.project-card {
-  width: 100%;
-  border-radius: 12px;
-  overflow: hidden;
-  position: relative;
-  aspect-ratio: 5 / 4;
-  cursor: default;
-}
-
-.project-card--vip { background: var(--color-fixed-dark); }
-[data-theme="dark"] .project-card--vip { background: var(--color-low); }
-
-.project-card--playground { background: var(--color-accent); }
-
-.project-card img.project-img {
-  position: absolute;
-  top: 1%;
-  left: 1%;
-  width: 98%;
-  height: 98%;
-  object-fit: contain;
-  object-position: center center;
-  pointer-events: none;
-  border-radius: 8px;
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.project-card--raise img.project-img {
-  object-position: center 12%;
-}
-
-.project-card--no-left img.project-img {
-  left: 0;
-}
-
-.project-card--no-right img.project-img {
-  left: auto;
-  right: 0;
-}
-
-.project-card--link {
-  cursor: pointer;
-  display: block;
-}
-
-.project-card:hover img.project-img {
-  transform: scale(1.04);
-}
-
-/* ===== PROJECT INFO BAR ===== */
-.project-info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+/* ===== CASE ROW (desc-case + img-case lado a lado, proporção do Figma) ===== */
+/* Larguras em % (390/1408 e resto) preservam a proporção. A altura vem do
+   aspect-ratio do .card-img-case (não do row) — assim a imagem com height:100%
+   tem uma altura definida pra ser cortada, sem o row crescer pra caber a imagem.
+   Rows alternam o lado via --reverse. */
+.case-row {
   display: flex;
-  align-items: flex-start;
+  gap: 8px;
+  align-items: stretch;
+  text-decoration: none;
+}
+
+.case-row--reverse {
+  flex-direction: row-reverse;
+}
+
+/* ===== DESC CARD ===== */
+.card-desc-case {
+  width: 27.7%; /* 390/1408 */
+  flex-shrink: 0;
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  padding: 24px 48px;
-  backdrop-filter: blur(9px);
-  -webkit-backdrop-filter: blur(9px);
+  color: var(--color-fixed-light);
+  transition: background-color 0.4s ease;
 }
 
-.project-info--light {
-  background: rgba(233, 236, 239, 0.7);
-  color: var(--color-dark);
+.card-desc-year {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
 }
 
-.project-info--light .project-desc {
-  color: var(--color-mid);
+.card-desc-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
 }
 
-.project-info--dark {
-  color: var(--color-light);
+.card-desc-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.project-info--dark .project-desc {
-  color: var(--color-low);
-}
-
-.project-name {
-  font-size: 32px;
+.card-desc-name {
+  font-size: 40px;
   font-weight: 500;
   line-height: 1;
   margin: 0;
 }
 
-.project-desc {
+.card-desc-text {
   font-size: 16px;
   font-weight: 500;
-  margin-top: 16px;
   line-height: 1.4;
+  margin: 0;
 }
 
-.project-action {
-  position: relative;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.project-year {
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.project-year-top {
-  position: absolute;
-  top: 24px;
-  right: 32px;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  z-index: 2;
-}
-
-.project-year-top--light { color: var(--color-mid); }
-.project-year-top--dark { color: rgba(255, 255, 255, 0.6); }
-
-.project-cta {
+.card-desc-action {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 44px;
   height: 44px;
-  padding: 0;
-  border-radius: 999px;
   border: 1px solid currentColor;
-  position: absolute;
-  top: 0;
-  right: 0;
-  opacity: 0;
-  transform: translateX(-8px);
-  transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-}
-
-.project-cta span {
-  display: none;
-}
-
-.project-cta .project-cta-arrow {
-  width: 16px;
-  height: 16px;
-}
-
-.project-cta-arrow {
+  border-radius: 999px;
   flex-shrink: 0;
   transition: transform 0.3s ease;
 }
 
-.project-card:hover .project-year {
-  opacity: 0;
-  transform: translateX(8px);
+.card-desc-case:hover .card-desc-action {
+  transform: translate(2px, -2px);
 }
 
-.project-card:hover .project-cta {
-  opacity: 1;
-  transform: translateX(0);
-  gap: 16px;
+/* ===== IMG CARD ===== */
+.card-img-case {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  aspect-ratio: 994 / 600; /* define a altura do card (e do row) a partir da largura */
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.project-card:hover .project-cta-arrow {
-  transform: translate(1px, 0);
+.card-img-case picture {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
-.project-info--light .project-cta:hover {
-  background: var(--color-fixed-dark);
-  color: #F6F4F0;
+/* Default (mockups de app: wiseapp, vip): imagem inteira centralizada, com a
+   margem própria do PNG dando respiro — sem colar nas bordas nem cortar. */
+.card-img-case img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
 }
 
-.project-info--dark .project-cta:hover {
-  background: #F3F1EC;
-  color: var(--color-fixed-dark);
+/* Screenshots (template, wisechat, playground): imagem inteira, sem crop. A
+   largura vem do padding (margem lateral); height:auto mantém a proporção. O card
+   tem altura fixa (aspect-ratio) + overflow hidden, então o que passar embaixo é
+   cortado na borda. */
+.card-img-case--contain {
+  align-items: flex-start;
+  padding: 40px 32px 0;
 }
 
-/* ===== EM BREVE LABEL ===== */
-.project-coming-soon {
+.card-img-case--contain img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Template e WiseChat (imagens mais largas/baixas que o card no desktop): ancora
+   na base pra não flutuar — sobra de banda fica no topo. (Playground é mais alta
+   no desktop e já chega embaixo sangrando, então segue ancorada no topo aqui; no
+   mobile ela vira flex-end junto com as outras — ver media query.) */
+.case-row--template .card-img-case--contain,
+.case-row--wisechat .card-img-case--contain {
+  align-items: flex-end;
+}
+
+/* ===== CORES POR CASE (desc → hover vira o bg do img-case) ===== */
+.case-row--template .card-desc-case { background: #efefef; color: #191819; }
+.case-row--template .card-desc-case:hover { background: #dfdfdf; }
+.case-row--template .card-desc-year,
+.case-row--template .card-desc-text { color: #6c757d; }
+.case-row--template .card-img-case { background: #dfdfdf; }
+
+.case-row--wisechat .card-desc-case { background: #393c58; }
+.case-row--wisechat .card-desc-case:hover { background: #1d1f2e; }
+.case-row--wisechat .card-img-case { background: #1d1f2e; }
+
+.case-row--wiseapp .card-desc-case { background: #235593; }
+.case-row--wiseapp .card-desc-case:hover { background: #02316a; }
+.case-row--wiseapp .card-img-case { background: #02316a; }
+
+.case-row--vip .card-desc-case { background: #555353; }
+.case-row--vip .card-desc-case:hover { background: #2a2a2a; }
+.case-row--vip .card-img-case { background: #2a2a2a; }
+
+.case-row--playground .card-desc-case { background: #4cb0ee; }
+.case-row--playground .card-desc-case:hover { background: #1da1f2; }
+.case-row--playground .card-img-case { background: #1da1f2; }
+
+/* ===== CURSOR "VER CASE" (sobre as imagens dos cases) ===== */
+/* Esconde o cursor nativo só quando o cursor custom está ativo (classe via JS) */
+.case-cursor-on .card-img-case,
+.case-cursor-on .card-img-case * {
+  cursor: none;
+}
+
+/* Wrapper segue o mouse (transform via JS) com um leve atraso = follow fluido */
+.case-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  pointer-events: none;
+  transform: translate3d(-200px, -200px, 0);
+  transition: transform 0.12s ease-out;
+}
+
+/* Pílula glassmorphism; aparece/some com fade + spring no scale */
+.case-cursor-pill {
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 12px;
+  padding: 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(8.5px);
+  backdrop-filter: blur(8.5px);
+  color: #fff;
+  font-size: 14px;
   font-weight: 500;
-  color: #999;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  line-height: 1;
+  white-space: nowrap;
   opacity: 0;
-  transform: translateY(4px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  margin-top: 16px;
+  transform: translate(-50%, -50%) scale(0.6);
+  transition: opacity 0.25s ease,
+              transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background-color 0.25s ease, color 0.25s ease;
+  will-change: transform, opacity;
 }
 
-.project-coming-soon svg {
-  width: 12px;
-  height: 12px;
-  flex-shrink: 0;
-}
-
-.project-card:hover .project-coming-soon {
+.case-cursor.is-visible .case-cursor-pill {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Sobre UI clara: pílula escura pra manter legibilidade (troca suave) */
+.case-cursor.is-dark .case-cursor-pill {
+  background: rgba(25, 24, 25, 0.6);
+  color: #fff;
+}
+
+.case-cursor-pill svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-cursor { transition: none; }
+  .case-cursor-pill,
+  .case-cursor.is-visible .case-cursor-pill {
+    transform: translate(-50%, -50%);
+    transition: opacity 0.15s ease;
+  }
 }
 
 /* ===== ABOUT ME ===== */
@@ -749,19 +759,13 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
     padding: 48px 48px 24px;
   }
 
-  .content {
-    grid-template-columns: 1fr;
+  .cases {
     padding: 48px;
-  }
-
-  .project-card {
-    aspect-ratio: 5 / 5.76;
-    height: auto;
   }
 }
 
 /* ===== RESPONSIVE: MOBILE ===== */
-@media (max-width: 1090px) {
+@media (max-width: 767px) {
   .hero {
     padding: 16px 12px 0;
   }
@@ -818,13 +822,13 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
   }
 }
 
-@media (min-width: 640px) and (max-width: 1090px) {
+@media (min-width: 640px) and (max-width: 767px) {
   .hero-text {
     font-size: 36px;
   }
 }
 
-@media (max-width: 1090px) {
+@media (max-width: 767px) {
 
   .typewriter-cursor {
     height: 0.9em;
@@ -834,90 +838,6 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
     padding: 40px 24px 16px;
     flex-direction: column;
     gap: 6px;
-  }
-
-  .content {
-    padding: 32px 12px;
-  }
-
-  .content > .project-card {
-    margin-bottom: 24px;
-  }
-
-  .project-card {
-    aspect-ratio: 5 / 5.76;
-    height: auto;
-    max-width: 100%;
-  }
-
-  .project-name {
-    font-size: 22px;
-  }
-
-  .project-desc {
-    font-size: 14px;
-  }
-
-  .project-card img.project-img {
-    top: 24px;
-    left: 24px;
-    width: calc(100% - 24px);
-    height: calc(100% - 24px);
-    object-fit: contain;
-    object-position: center top;
-  }
-
-  .project-card--raise img.project-img {
-    object-position: center top;
-  }
-
-  .project-card--no-left img.project-img {
-    left: 0;
-  }
-
-  .project-card--no-right img.project-img {
-    left: auto;
-    right: 0;
-  }
-
-  .project-info {
-    padding: 16px 24px;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .project-year {
-    display: none;
-  }
-
-  .project-coming-soon {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .project-cta {
-    position: static;
-    opacity: 1;
-    transform: none;
-    gap: 10px;
-    align-self: flex-start;
-  }
-
-  /* Ano na mesma linha da seta, alinhado à direita (cta fica à esquerda) */
-  .project-year-top {
-    top: auto;
-    bottom: 28px;
-    right: 24px;
-  }
-
-  .project-card:hover .project-cta {
-    gap: 10px;
-    transform: none;
-  }
-
-  .project-card:hover .project-year {
-    opacity: 0;
-    transform: none;
   }
 
   .about-me {
@@ -943,31 +863,56 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
   }
 }
 
-/* ===== STACKING SCROLL (empilhamento das seções, desktop + responsivo) ===== */
-/* Cada camada gruda (sticky) e a próxima rola por cima, na ordem do DOM:
-   hero < projects < about-me < footer. Sem z-index: position:sticky já cria um
-   stacking context, então as camadas empilham na ordem do DOM (a posterior pinta
-   por cima). Justamente por isso o menu (header) NÃO pode ficar dentro do hero —
-   ficaria preso no stacking context do hero (camada de baixo) e seria coberto;
-   ele mora no topo do body (z-index:100) e fica sempre à frente.
-   js/index-stack.js define top = min(0, 100vh - altura): camadas mais altas que
-   a viewport grudam alinhadas embaixo (revelam todo o conteúdo antes de congelar);
-   camadas menores grudam no topo. */
+/* ===== RESPONSIVE: CASES EMPILHADOS (≤767px) ===== */
+@media (max-width: 767px) {
+  .cases {
+    padding: 32px 12px;
+    gap: 16px;
+  }
+
+  /* Empilha: desc-case em cima, img-case embaixo (inclusive nos rows --reverse) */
+  .case-row,
+  .case-row--reverse {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* Todos os desc-case com a mesma altura: ano no topo, título+ação na base */
+  .card-desc-case {
+    width: 100%;
+    height: 280px;
+    padding: 24px;
+    justify-content: space-between;
+  }
+
+  .card-desc-name {
+    font-size: 28px;
+  }
+
+  .card-desc-text {
+    font-size: 14px;
+  }
+
+  .card-img-case {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+  }
+
+  .card-img-case--contain {
+    padding: 24px 16px 0;
+    /* Card 4/3 e as 3 imagens ficam mais baixas que ele → ancora todas na base
+       (incl. playground) pra não flutuarem. */
+    align-items: flex-end;
+  }
+}
+
+/* Seções da home em fluxo normal (sem empilhamento). */
 .stack-layer {
-  position: sticky;
-  top: 0;
   background: var(--color-light);
 }
 
-/* Respiro no fim das seções cobertas: a próxima camada cobre espaço vazio antes
-   de chegar no conteúdo (senão o conteúdo da base corta na sobreposição). */
-.stack-projects,
-.about-me.stack-layer {
-  padding-bottom: 96px;
-}
-
 /* No responsivo, email do footer-cta menor (só na index — footer é compartilhado) */
-@media (max-width: 1090px) {
+@media (max-width: 767px) {
   .page-index .footer-cta-email {
     font-size: clamp(13px, 4.6vw, 21px);
   }

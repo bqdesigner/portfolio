@@ -904,7 +904,7 @@ kbd {
 .mobile-menu-toggle { display: none; }
 
 /* ═══ Responsive ══════════════════════════════════════════════════ */
-@media (max-width: 1090px) {
+@media (max-width: 767px) {
   /* Slide: block flow + scroll vertical nativo (evita armadilhas de flex column + overflow) */
   .slide {
     display: block;

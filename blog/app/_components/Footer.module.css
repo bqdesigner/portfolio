@@ -269,7 +269,7 @@
   stroke: var(--color-fixed-dark);
 }
 
-@media (max-width: 1090px) {
+@media (max-width: 767px) {
   .footer {
     padding: 80px 24px 48px;
   }

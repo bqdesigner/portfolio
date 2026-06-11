@@ -14,7 +14,7 @@
     '.hero-title',
     '.hero-sub',
     '.section-label',
-    '.content > .project-card',
+    '.cases > .case-row',
     '.logo-marquee',
     '.about-me-left > *',
     '.experience-list > *',
@@ -42,7 +42,15 @@
 
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
-      e.target.classList.toggle('reveal-in', e.isIntersecting);
+      if (e.isIntersecting) {
+        e.target.classList.add('reveal-in');
+        // Rows de case são grandes: revela uma vez e para de observar. Senão o
+        // fade-out/in dispara toda vez que a borda do row cruza a viewport
+        // (rows altos quase do tamanho da tela) — causa flicker no scroll.
+        if (e.target.classList.contains('case-row')) io.unobserve(e.target);
+      } else {
+        e.target.classList.remove('reveal-in');
+      }
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
 
