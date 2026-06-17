@@ -510,9 +510,9 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
 .case-row--vip .card-desc-case:hover { background: #2a2a2a; }
 .case-row--vip .card-img-case { background: #2a2a2a; }
 
-.case-row--playground .card-desc-case { background: #4cb0ee; }
-.case-row--playground .card-desc-case:hover { background: #1da1f2; }
-.case-row--playground .card-img-case { background: #1da1f2; }
+.case-row--playground .card-desc-case { background: #3F3B6E; }
+.case-row--playground .card-desc-case:hover { background: #23204B; }
+.case-row--playground .card-img-case { background: #23204B; }
 
 /* ===== CURSOR "VER CASE" (sobre as imagens dos cases) ===== */
 /* Esconde o cursor nativo só quando o cursor custom está ativo (classe via JS) */
@@ -863,24 +863,45 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
   }
 }
 
-/* ===== RESPONSIVE: CASES EMPILHADOS (≤767px) ===== */
+/* ===== RESPONSIVE: CASES EM SCROLL LATERAL (≤767px) ===== */
 @media (max-width: 767px) {
+  /* Carrossel horizontal: rows lado a lado com snap por card. Scroll pra direita
+     acessa os demais cases; scroll pra baixo segue pro restante do site. */
   .cases {
-    padding: 32px 12px;
+    flex-direction: row;
+    flex-wrap: nowrap;
     gap: 16px;
+    padding: 32px 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 12px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
   }
 
-  /* Empilha: desc-case em cima, img-case embaixo (inclusive nos rows --reverse) */
+  .cases::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+
+  /* Cada case ocupa 90% da largura (o próximo fica espiando) e 90% da altura da
+     viewport. Empilha desc em cima, img embaixo (inclusive nos rows --reverse). */
   .case-row,
   .case-row--reverse {
     flex-direction: column;
+    flex: 0 0 90%;
+    width: 90%;
+    height: 80vh;
     gap: 8px;
+    scroll-snap-align: start;
   }
 
-  /* Todos os desc-case com a mesma altura: ano no topo, título+ação na base */
+  /* desc e img com altura explícita e igual (metade do row menos o gap). Altura
+     fixa evita que o aspect intrínseco da imagem encolha o card da imagem e faça
+     a desc crescer — o que deixava os dois com tamanhos diferentes. */
   .card-desc-case {
     width: 100%;
-    height: 280px;
+    flex: none;
+    height: calc((80vh - 8px) / 2);
+    min-height: 0;
     padding: 24px;
     justify-content: space-between;
   }
@@ -895,14 +916,44 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
 
   .card-img-case {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    flex: none;
+    height: calc((80vh - 8px) / 2);
+    min-height: 0;
+    aspect-ratio: auto;
   }
 
+  /* Cases já entram visíveis no carrossel horizontal (sem fade de reveal) */
+  .js-reveal .cases > .case-row {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Screenshots (1/2/5): ancora no topo-esquerda com 40px de respiro; a imagem
+     sangra pra direita e pra baixo (cortada pelo overflow do card). */
   .card-img-case--contain {
-    padding: 24px 16px 0;
-    /* Card 4/3 e as 3 imagens ficam mais baixas que ele → ancora todas na base
-       (incl. playground) pra não flutuarem. */
+    padding: 40px 0 0 40px;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .card-img-case--contain img {
+    width: 150%;
+    max-width: none;
+  }
+
+  /* Template/WiseChat: imagem expandida rente ao rodapé (ignora o respiro do
+     topo); o excesso sangra e é cortado pelo overflow do card. */
+  .case-row--template .card-img-case--contain,
+  .case-row--wisechat .card-img-case--contain {
     align-items: flex-end;
+    padding: 0 0 0 40px;
+  }
+
+  /* Playground: 40px de respiro no topo, rente à esquerda; a imagem expandida
+     sangra pra baixo/direita (cortada pelo overflow → fica rente no rodapé). */
+  .case-row--playground .card-img-case--contain {
+    align-items: flex-start;
+    padding: 40px 0 0 0;
   }
 }
 
