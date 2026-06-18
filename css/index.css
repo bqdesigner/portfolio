@@ -11,6 +11,24 @@
   position: relative;
 }
 
+/* Camada WebGL (ColorBends) sobre a cor do card, atrás do conteúdo.
+   Recortada no raio do card; não captura ponteiro (o listener fica no card). */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Conteúdo (logo, texto, carrossel) acima do fundo animado. */
+.hero-card > .hero-content,
+.hero-card > .logo {
+  position: relative;
+  z-index: 1;
+}
+
 @media (min-width: 768px) {
   .hero-card {
     min-height: 85vh;
