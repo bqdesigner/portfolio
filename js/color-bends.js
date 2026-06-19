@@ -32,11 +32,13 @@ void main() {
   vec2 p = vUv * 2.0 - 1.0;
   p += uPointer * uParallax * 0.1;
   vec2 rp = vec2(p.x * uRot.x - p.y * uRot.y, p.x * uRot.y + p.y * uRot.x);
-  // Cover: lado menor mapeia ±1, o maior estende (e recorta). Mantém as bandas
-  // na mesma proporção do desktop em qualquer aspect (sem achatar no retrato).
+  // Referência fixa na ALTURA: y mapeia ±1, x estende por aspect (e recorta).
+  // Features redondas em qualquer aspect E zoom preso à altura do viewport —
+  // como a altura é parecida desktop/mobile, o retrato mostra as bandas na
+  // mesma escala do desktop (só recorta a largura), sem zoom extra.
   float uAspect = uCanvas.x / uCanvas.y;
   vec2 q = rp;
-  if (uAspect >= 1.0) q.x *= uAspect; else q.y /= uAspect;
+  q.x *= uAspect;
   q /= max(uScale, 0.0001);
   q /= 0.5 + 0.2 * dot(q, q);
   q += 0.2 * cos(t) - 7.56;
