@@ -980,6 +980,84 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
   background: var(--color-light);
 }
 
+/* ===== HERO SCROLL MOTION (index) =====
+   Hero pinado e coreografado por scroll (js/index-hero-motion.js):
+   1) expande até full-bleed (some o frame de 16px e o raio de 12px) — altura
+      original preservada (--hero-h0);
+   2) encolhe a altura até sumir, com o conteúdo (bottom-aligned) subindo + fade.
+   Os cases (.stack-projects) sobem POR CIMA (margin-top negativo + z-index) e
+   preenchem o espaço conforme o hero some — sem buraco de bg vazio.
+   Vars (--hero-frame, --hero-card-h, --hero-op) setadas pelo JS no .hero, herdam
+   p/ card/content. Gated por .js-hero-motion — sem JS / reduced-motion = normal. */
+.js-hero-motion {
+  --hero-h0: 85vh; /* altura de repouso do hero (= min-height original desktop) */
+}
+
+@media (max-width: 767px) {
+  .js-hero-motion {
+    --hero-h0: 80vh; /* = height original mobile */
+  }
+}
+
+.js-hero-motion .hero-scroll {
+  /* pista: 100vh fase 1 (full-bleed -> framed) + altura do card (collapse) + 100vh do hero pinado */
+  height: calc(200vh + var(--hero-h0));
+  position: relative;
+}
+
+.js-hero-motion .hero {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: calc(16px * var(--hero-frame, 1)) calc(16px * var(--hero-frame, 1)) 0;
+}
+
+.js-hero-motion .hero-card {
+  height: var(--hero-card-h, var(--hero-h0));
+  min-height: 0;
+  border-radius: calc(12px * var(--hero-frame, 1));
+  overflow: hidden;
+  will-change: height;
+}
+
+/* O card muda de altura a cada frame do scroll. Se o canvas WebGL (.hero-bg)
+   acompanhasse (inset:0), o renderer redimensionaria toda hora -> flicker. Aqui
+   o canvas fica com tamanho fixo (viewport), ancorado no topo-esquerda do card,
+   e o overflow:hidden do card recorta. Sem resize por frame = sem flicker, e a
+   animação do efeito segue rodando normal. */
+.js-hero-motion .hero-bg {
+  inset: 0 auto auto 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.js-hero-motion .hero-content {
+  opacity: var(--hero-op, 1);
+  will-change: opacity;
+}
+
+/* Cases sobem por cima do hero conforme ele some (preenche o vão). O +16px casa
+   o topo dos cases com a borda de baixo do card (que tem o frame de 16px). */
+.js-hero-motion .stack-projects {
+  position: relative;
+  z-index: 2;
+  margin-top: calc(16px - 100vh);
+}
+
+@media (max-width: 767px) {
+  .js-hero-motion .hero {
+    padding: calc(12px * var(--hero-frame, 1)) calc(12px * var(--hero-frame, 1)) 0;
+  }
+
+  .js-hero-motion .stack-projects {
+    margin-top: calc(12px - 100vh);
+  }
+}
+
 /* No responsivo, email do footer-cta menor (só na index — footer é compartilhado) */
 @media (max-width: 767px) {
   .page-index .footer-cta-email {
