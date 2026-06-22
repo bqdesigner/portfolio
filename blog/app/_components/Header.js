@@ -10,7 +10,7 @@ const NAV = [
   { label: 'Playground', href: `${SITE}/case-playground` },
   { label: 'Contato', href: `${SITE}/#contato` },
   { label: 'Blog', href: '/blog', active: true },
-  { label: 'Manda freelas', href: `${SITE}/manda-freelas`, tag: 'Breve' },
+  { label: 'Manda freelas', href: '#', tag: 'Breve' },
 ];
 
 function Logo({ href = SITE }) {
@@ -82,7 +82,7 @@ export default function Header() {
         <Logo href={withTheme(SITE)} />
         <div className={styles.mobileLinks}>
           {NAV.map((item) => (
-            <a key={item.label} href={withTheme(item.href)} onClick={() => setMenuOpen(false)} className={item.tag ? styles.navItemWrapper : ''}>
+            <a key={item.label} href={withTheme(item.href)} onClick={(e) => { if (item.tag) e.preventDefault(); setMenuOpen(false); }} className={item.tag ? styles.navItemWrapper : ''}>
               {item.tag ? (
                 <>
                   <span>{item.label}</span>
