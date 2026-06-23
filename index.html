@@ -24,8 +24,8 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23fff'/%3E%3Cg transform='translate(16,12)'%3E%3Cpath d='M8.51 8.53c.01.48-.09.95-.3 1.38a3.6 3.6 0 01-.81 1.09c-.34.31-.74.55-1.17.71-.45.17-.92.26-1.4.26L0 11.95V0h4.3c.49 0 .98.07 1.44.23.43.14.82.37 1.16.67.33.3.6.67.77 1.08.19.45.28.94.28 1.43 0 .45-.1.89-.3 1.3a3.2 3.2 0 01-.79 1.06c.26.13.49.3.69.49.2.2.38.42.52.67.14.24.25.5.33.77.07.27.11.55.11.83zM5.66 3.45c.01-.26-.05-.52-.17-.75a1.5 1.5 0 00-.44-.58 1.7 1.7 0 00-.64-.31 2.8 2.8 0 00-.75-.1H2.32v3.29l.67.01h.69c.25 0 .5-.03.74-.09.23-.05.45-.15.64-.28.18-.13.34-.3.44-.5.12-.23.17-.48.17-.72zm.45 4.94c0-.24-.05-.47-.14-.69a1.5 1.5 0 00-.39-.53 1.7 1.7 0 00-.57-.34 2.5 2.5 0 00-.7-.12c-.34-.01-.67-.01-1-.01s-.67 0-1 0v3.3h1.73c.25 0 .5-.03.74-.09.24-.06.46-.15.65-.29.19-.13.35-.31.47-.51.12-.23.18-.48.17-.72z' fill='%23191819'/%3E%3Crect x='15' y='6' width='1.6' height='26.2' rx='.8' transform='rotate(44.92 15.8 19.1)' fill='%23191819'/%3E%3Cg transform='translate(19.5,27.5)'%3E%3Cpath d='M12.59 6.2c0 .68-.11 1.36-.34 2.01-.22.63-.55 1.22-.96 1.74l1.19 1.18-1.37 1.37-1.22-1.24a5.9 5.9 0 01-1.67.84 6.3 6.3 0 01-1.93.3c-.84.01-1.67-.16-2.44-.49a6.1 6.1 0 01-2-1.33 6.1 6.1 0 01-1.35-1.96A6.2 6.2 0 010 6.2c0-.83.17-1.65.49-2.41a6.1 6.1 0 011.35-1.97A6.1 6.1 0 013.85.49 6.3 6.3 0 016.29 0c.84 0 1.67.17 2.45.49a6.1 6.1 0 012.01 1.33 6.1 6.1 0 011.35 1.97c.33.76.5 1.58.49 2.41zm-2.26 0c0-.53-.11-1.06-.32-1.55a4.1 4.1 0 00-.87-1.28 4.1 4.1 0 00-1.28-.87 4.1 4.1 0 00-1.57-.32c-.54 0-1.07.11-1.57.32-.48.21-.92.5-1.28.87a4.1 4.1 0 00-.87 1.28 4.1 4.1 0 00-.32 1.55c0 .53.11 1.06.32 1.55.2.48.5.92.87 1.28.37.37.81.66 1.28.87.49.22 1.03.32 1.57.32.37 0 .73-.05 1.08-.15.34-.1.67-.24.98-.42l-1.12-1.09 1.37-1.37 1.11 1.14a3.9 3.9 0 00.63-2.12z' fill='%23191819'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"></noscript>
   <meta name="theme-color" content="#FFFFFF" />
   <link rel="stylesheet" href="css/core.css" />
   <link rel="stylesheet" href="css/index.css" />
@@ -251,6 +251,14 @@
     </div>
   </section>
 
+  <!-- Escrita recente: 3 posts mais recentes do blog (preenchido por js/latest-posts.js) -->
+  <section class="writing stack-layer" id="escrita" hidden>
+    <div class="writing-inner">
+      <h2 class="case-section-title" data-i18n="writing.title">O que tenho escrito ultimamente</h2>
+      <div class="writing-list" id="writingList" aria-live="polite"></div>
+    </div>
+  </section>
+
   <!-- Footer (stacking layer) -->
   <div class="stack-layer stack-footer">
     <div data-partial="footer-cta"></div>
@@ -273,6 +281,7 @@
   <script src="js/reveal.js"></script>
   <script src="js/cases-swipe-hint.js"></script>
   <script src="js/case-cursor.js"></script>
+  <script src="js/latest-posts.js"></script>
 
   <!-- Fundo animado do hero (three via CDN, sem bundler) -->
   <script type="importmap">

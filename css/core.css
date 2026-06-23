@@ -13,6 +13,7 @@
   --color-fixed-dark: #191819;
   --color-fixed-light: #FFFFFF;
   --font: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, monospace;
 }
 
 [data-theme="dark"] {
@@ -735,7 +736,7 @@ body:has(.mobile-overlay--open) .logo {
   }
 
   .case-footer {
-    padding: 64px 101px;
+    padding: 64px 16px;
   }
 }
 
@@ -782,7 +783,7 @@ body:has(.mobile-overlay--open) .logo {
   }
 
   .case-footer {
-    padding: 80px 24px 48px;
+    padding: 80px 16px 48px;
   }
 
   .case-footer .footer-cta-title {

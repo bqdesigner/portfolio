@@ -28,6 +28,7 @@
     'projects.label.year': '2020 → 2025',
     'projects.label.count': 'Projects / 05',
     'about.tagline': 'Between execution and strategy.',
+    'writing.title': "What I've been writing lately",
     'about.label.title': 'Who is Bruno',
     'about.label.sub': '12 years doing design',
     'about.exp': 'Experience',
