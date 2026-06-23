@@ -2,7 +2,8 @@
 // Port vanilla do componente React Bits (JS+CSS, three). Mantém o shader
 // original; só troca os hooks por setup/cleanup imperativo. Renderiza uma
 // camada WebGL transparente por cima da cor do card (--color-fixed-dark).
-import * as THREE from 'three';
+// O three (~1.2MB) é importado dinamicamente em idle pós-load (ver mount), fora
+// do caminho crítico — o efeito roda idêntico, só inicia uns ms depois.
 
 const MAX_COLORS = 8;
 
@@ -115,7 +116,7 @@ void main() {
 }
 `;
 
-const toVec3 = hex => {
+const toVec3 = (THREE, hex) => {
   const h = hex.replace('#', '').trim();
   const v =
     h.length === 3
@@ -124,7 +125,7 @@ const toVec3 = hex => {
   return new THREE.Vector3(v[0] / 255, v[1] / 255, v[2] / 255);
 };
 
-function initColorBends(container, pointerTargetEl, opts) {
+function initColorBends(THREE, container, pointerTargetEl, opts) {
   const {
     rotation = 90,
     speed = 0.2,
@@ -148,7 +149,7 @@ function initColorBends(container, pointerTargetEl, opts) {
   const geometry = new THREE.PlaneGeometry(2, 2);
 
   const uColorsArray = Array.from({ length: MAX_COLORS }, () => new THREE.Vector3(0, 0, 0));
-  const arr = (colors || []).filter(Boolean).slice(0, MAX_COLORS).map(toVec3);
+  const arr = (colors || []).filter(Boolean).slice(0, MAX_COLORS).map(c => toVec3(THREE, c));
   arr.forEach((c, i) => uColorsArray[i].copy(c));
 
   const rad = (rotation * Math.PI) / 180;
@@ -269,28 +270,42 @@ function mount() {
 
   const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  initColorBends(bg, card, {
-    // Tons do accent (#1DA1F2): mais escuro → accent → mais claro. Monocromático
-    // azul pra ficar sutil sobre o card escuro.
-    colors: ['#0c4a73', '#1DA1F2', '#7fc9f7'],
-    rotation: 90,
-    speed: 0.59,
-    scale: 0.9,
-    frequency: 2.2,
-    warpStrength: 1,
-    mouseInfluence: 1,
-    noise: 0.12,
-    parallax: 0.5,
-    iterations: 1,
-    intensity: 0.85,
-    bandWidth: 6,
-    transparent: true,
-    animate: !reduce
+  // Importa o three fora do caminho crítico. O card já mostra a cor sólida de
+  // fundo enquanto isso; a camada WebGL entra por cima quando carrega.
+  import('three').then(THREE => {
+    initColorBends(THREE, bg, card, {
+      // Tons do accent (#1DA1F2): mais escuro → accent → mais claro. Monocromático
+      // azul pra ficar sutil sobre o card escuro.
+      colors: ['#0c4a73', '#1DA1F2', '#7fc9f7'],
+      rotation: 90,
+      speed: 0.59,
+      scale: 0.9,
+      frequency: 2.2,
+      warpStrength: 1,
+      mouseInfluence: 1,
+      noise: 0.12,
+      parallax: 0.5,
+      iterations: 1,
+      intensity: 0.85,
+      bandWidth: 6,
+      transparent: true,
+      animate: !reduce
+    });
   });
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', mount);
+// Agenda o mount fora do caminho crítico: só após o load, em idle. Não compete
+// com o LCP nem com o trabalho de main-thread do carregamento inicial.
+function schedule() {
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(mount, { timeout: 2000 });
+  } else {
+    setTimeout(mount, 200);
+  }
+}
+
+if (document.readyState === 'complete') {
+  schedule();
 } else {
-  mount();
+  window.addEventListener('load', schedule, { once: true });
 }

@@ -56,6 +56,10 @@ else document.addEventListener('partials-ready', bindLogoSmoothScroll);
     });
   });
 
+  // Nada pra animar (página sem .typewriter-line) — evita o crash em showNext,
+  // que faria allWords[-1].after(cursor) com a lista vazia.
+  if (allWords.length === 0) return;
+
   // If reduced motion, show all words immediately
   if (prefersReducedMotion) {
     allWords.forEach(function(w) { w.classList.add('visible'); });

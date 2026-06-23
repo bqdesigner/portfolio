@@ -75,11 +75,11 @@
       </div>
         <div class="hero-img" aria-hidden="true">
           <div class="hero-carrossel-track" id="heroCarrosselTrack">
-            <img src="assets/main/img-carrossel-1.png?v=20260528" alt="" width="458" height="726" />
-            <img src="assets/main/img-carrossel-2.png?v=20260528" alt="" width="458" height="726" />
-            <img src="assets/main/img-carrossel-3.png?v=20260528" alt="" width="458" height="726" />
-            <img src="assets/main/img-carrossel-4.png?v=20260528" alt="" width="458" height="726" />
-            <img src="assets/main/img-carrossel-5.png?v=20260528" alt="" width="458" height="726" />
+            <img src="assets/main/img-carrossel-1.webp?v=20260528" alt="" width="458" height="726" fetchpriority="high" />
+            <img src="assets/main/img-carrossel-2.webp?v=20260528" alt="" width="458" height="726" />
+            <img src="assets/main/img-carrossel-3.webp?v=20260528" alt="" width="458" height="726" />
+            <img src="assets/main/img-carrossel-4.webp?v=20260528" alt="" width="458" height="726" />
+            <img src="assets/main/img-carrossel-5.webp?v=20260528" alt="" width="458" height="726" />
           </div>
         </div>
       </div>
@@ -149,7 +149,7 @@
       <div class="card-img-case">
         <picture>
           <source srcset="assets/main/job_wiseapp.webp" type="image/webp" />
-          <img src="assets/main/job_wiseapp.png" alt="App WiseApp com interface de roteirização para motoristas" loading="lazy" />
+          <img src="assets/main/job_wiseapp.webp" alt="App WiseApp com interface de roteirização para motoristas" loading="lazy" />
         </picture>
       </div>
     </a>
@@ -169,7 +169,7 @@
       <div class="card-img-case">
         <picture>
           <source srcset="assets/main/job_fb-vip.webp" type="image/webp" />
-          <img src="assets/main/job_fb-vip.png" alt="Dashboard do Frete.com VIP com painel SaaS de gestão de fretes" loading="lazy" />
+          <img src="assets/main/job_fb-vip.webp" alt="Dashboard do Frete.com VIP com painel SaaS de gestão de fretes" loading="lazy" />
         </picture>
       </div>
     </a>
@@ -270,22 +270,22 @@
     <div></div><div></div><div></div><div></div><div></div><div></div>
   </div>
 
-  <script src="js/loader.js"></script>
-  <script src="js/header.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/back-to-top.js"></script>
-  <script src="js/index-stack.js"></script>
-  <script src="js/index-hero-motion.js"></script>
-  <script src="js/lang-switcher.js"></script>
-  <script src="js/hero-rotator.js"></script>
-  <script src="js/reveal.js"></script>
-  <script src="js/cases-swipe-hint.js"></script>
-  <script src="js/case-cursor.js"></script>
-  <script src="js/latest-posts.js"></script>
+  <script defer src="js/loader.js"></script>
+  <script defer src="js/header.js"></script>
+  <script defer src="js/main.js"></script>
+  <script defer src="js/back-to-top.js"></script>
+  <script defer src="js/index-stack.js"></script>
+  <script defer src="js/index-hero-motion.js"></script>
+  <script defer src="js/lang-switcher.js"></script>
+  <script defer src="js/hero-rotator.js"></script>
+  <script defer src="js/reveal.js"></script>
+  <script defer src="js/cases-swipe-hint.js"></script>
+  <script defer src="js/case-cursor.js"></script>
+  <script defer src="js/latest-posts.js"></script>
 
-  <!-- Fundo animado do hero (three via CDN, sem bundler) -->
+  <!-- Fundo animado do hero (three self-hospedado; init dinâmico em idle) -->
   <script type="importmap">
-  { "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+  { "imports": { "three": "/js/vendor/three.module.js" } }
   </script>
   <script type="module" src="js/color-bends.js"></script>
 
