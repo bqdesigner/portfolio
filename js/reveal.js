@@ -1,8 +1,8 @@
 // Reveal on scroll/load (index + cases): conteúdo surge com fade + translateY de
-// baixo pra cima ao entrar na viewport, e some ao sair (scroll no sentido
-// contrário). Estado oculto é puro CSS (gated por .js-reveal); aqui só ligamos/
-// desligamos .reveal-in conforme a interseção. Seletores que não existem na
-// página atual simplesmente não casam. NÃO observa .stack-layer (sticky na index).
+// baixo pra cima ao entrar na viewport. Fade só na 1ª aparição — depois fica
+// visível (sem fade-out/in no scroll pra cima). Estado oculto é puro CSS (gated
+// por .js-reveal); aqui só ligamos .reveal-in na interseção. Seletores que não
+// existem na página atual simplesmente não casam. NÃO observa .stack-layer (sticky).
 (function () {
   var html = document.documentElement;
   // .js-reveal só existe quando NÃO é prefers-reduced-motion → se ausente, nada
@@ -42,14 +42,10 @@
 
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
+      // Revela uma vez e para de observar — nada de fade-out/in ao voltar.
       if (e.isIntersecting) {
         e.target.classList.add('reveal-in');
-        // Rows de case são grandes: revela uma vez e para de observar. Senão o
-        // fade-out/in dispara toda vez que a borda do row cruza a viewport
-        // (rows altos quase do tamanho da tela) — causa flicker no scroll.
-        if (e.target.classList.contains('case-row')) io.unobserve(e.target);
-      } else {
-        e.target.classList.remove('reveal-in');
+        io.unobserve(e.target);
       }
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });

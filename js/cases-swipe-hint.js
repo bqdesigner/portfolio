@@ -13,7 +13,7 @@
   if (!cases || !first) return;
 
   // Nudge via scroll real: revela o início do próximo case (continuação) e volta.
-  // Repete 2x. Desliga o snap durante o gesto pra não voltar/avançar abrupto.
+  // Uma vez só. Desliga o snap durante o gesto pra não voltar/avançar abrupto.
   function nudge(done) {
     cases.scrollTo({ left: 56, behavior: 'smooth' });
     setTimeout(function () {
@@ -25,9 +25,7 @@
   function play() {
     var snap = cases.style.scrollSnapType;
     cases.style.scrollSnapType = 'none';
-    nudge(function () {
-      nudge(function () { cases.style.scrollSnapType = snap; });
-    });
+    nudge(function () { cases.style.scrollSnapType = snap; });
   }
 
   var io = new IntersectionObserver(function (entries) {
