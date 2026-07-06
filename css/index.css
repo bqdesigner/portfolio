@@ -784,7 +784,7 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
 /* ===== ESCRITA RECENTE: 3 últimos posts do blog =====
    Cards replicam a estrutura do card do blog (_components/BlogList). */
 .writing {
-  padding: 16px 16px 64px;
+  padding: 16px 16px 0;
 }
 
 .writing-inner {
@@ -1086,7 +1086,7 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
    demais textos, scroll pra baixo segue pro restante do site. */
 @media (max-width: 767px) {
   .writing {
-    padding: 0 0 48px;
+    padding: 0;
   }
 
   .writing-inner {
