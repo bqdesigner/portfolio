@@ -145,14 +145,13 @@ export default function Footer() {
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.cta}>
-        <h2 className={styles.ctaTitle}>Bora trabalhar juntos?</h2>
-        <a href="mailto:bqdesigner@outlook.com" className={styles.ctaEmail}>bqdesigner@outlook.com</a>
-      </div>
       <div className={styles.grid}>
         <div className={styles.col}>
           <h4>— Contato</h4>
           <p>Baseado em São Paulo, atendo remoto.</p>
+          <ul>
+            <li><a href="mailto:bqdesigner@outlook.com">bqdesigner@outlook.com</a></li>
+          </ul>
         </div>
         <div className={styles.col}>
           <h4>— Social</h4>
@@ -160,6 +159,7 @@ export default function Footer() {
             <li><a href="https://www.linkedin.com/in/itsbrunoqueiros/" target="_blank" rel="noopener noreferrer">LinkedIn <ArrowOut /></a></li>
             <li><a href="https://dribbble.com/itsbrunoqueiros" target="_blank" rel="noopener noreferrer">Dribbble <ArrowOut /></a></li>
             <li><a href="https://medium.com/@brunoqueiros" target="_blank" rel="noopener noreferrer">Medium <ArrowOut /></a></li>
+            <li><a href="https://github.com/bqdesigner" target="_blank" rel="noopener noreferrer">GitHub <ArrowOut /></a></li>
           </ul>
         </div>
         <div className={styles.col}>
@@ -171,7 +171,6 @@ export default function Footer() {
             <li><a href="/blog">Blog</a></li>
             <li><a href="#"><span>Manda freelas</span> <span className={styles.navTag}>Breve</span></a></li>
             <li><a href="/resume.html">Currículo</a></li>
-            <li><a href="/presentation">Talk - IA no processo do designer</a></li>
           </ul>
         </div>
       </div>

@@ -322,33 +322,6 @@ body:has(.mobile-overlay--open) .logo {
 }
 
 /* ===== FOOTER CTA ===== */
-.content > .footer-cta {
-  width: 100%;
-  max-width: calc(100vw - 96px);
-  height: calc(100vh - 96px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 48px;
-  border-radius: 12px;
-}
-
-.case-footer .footer-cta {
-  width: 100%;
-}
-
-.footer-cta-title {
-  margin: 0;
-  font-size: 64px;
-  font-weight: 500;
-  line-height: 1;
-  color: var(--color-mid);
-  text-wrap: balance;
-  text-transform: uppercase;
-}
-
 .footer-cta-top {
   display: flex;
   align-items: center;
@@ -357,47 +330,6 @@ body:has(.mobile-overlay--open) .logo {
   gap: 48px;
 }
 
-
-.footer-cta-email {
-  font-size: 64px;
-  font-weight: 700;
-  line-height: 1;
-  color: var(--color-dark);
-  text-transform: uppercase;
-  padding-bottom: 24px;
-  margin-top: 22px;
-  display: inline-block;
-  transition: color 0.2s;
-  position: relative;
-}
-
-.footer-cta-email::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--color-accent);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.4s ease;
-}
-
-.footer-cta-email:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-.footer-cta-email:not(:hover)::after {
-  left: auto;
-  right: 0;
-  transition: width 0.4s ease;
-}
-
-.footer-cta-email:hover {
-  color: var(--color-accent);
-}
 
 .footer-links {
   display: flex;
@@ -647,15 +579,6 @@ body:has(.mobile-overlay--open) .logo {
   opacity: 0.7;
 }
 
-.content > .footer-cta {
-  margin-bottom: 48px;
-}
-
-.content > .footer-cta {
-  background: var(--color-light);
-  border-radius: 12px;
-}
-
 /* ===== FOOTER BIG NAME ===== */
 .footer-bigname {
   width: 100%;
@@ -725,16 +648,6 @@ body:has(.mobile-overlay--open) .logo {
 
 /* ===== RESPONSIVE: TABLET ===== */
 @media (max-width: 1200px) {
-  .footer-cta-title,
-  .footer-cta-email {
-    font-size: 42px;
-  }
-
-  .content > .footer-cta {
-    height: calc(100vh - 96px);
-    padding: 48px;
-  }
-
   .case-footer {
     padding: 64px 16px;
   }
@@ -756,25 +669,10 @@ body:has(.mobile-overlay--open) .logo {
     padding: 24px 24px 40px;
   }
 
-  .content > .footer-cta {
-    height: calc(100vh - 96px);
-    max-width: 100%;
-    padding: 32px 24px;
-  }
-
   .footer-cta-top {
     flex-direction: column;
     align-items: center;
     gap: 32px;
-  }
-
-  .footer-cta-title {
-    font-size: 28px;
-  }
-
-  .footer-cta-email {
-    font-size: clamp(16px, 6.2vw, 28px);
-    white-space: nowrap;
   }
 
   .footer-grid {
@@ -784,15 +682,6 @@ body:has(.mobile-overlay--open) .logo {
 
   .case-footer {
     padding: 80px 16px 48px;
-  }
-
-  .case-footer .footer-cta-title {
-    font-size: 28px;
-  }
-
-  .case-footer .footer-cta-email {
-    font-size: clamp(16px, 6.2vw, 28px);
-    white-space: nowrap;
   }
 
   .scroll-indicator {
@@ -1004,7 +893,7 @@ button:focus-visible {
    Progressive blur: camadas com blur crescente (1px no topo -> 7px na base),
    cada uma visível só numa banda horizontal (máscara). O empilhamento das bandas
    com bordas suaves gera o degradê: quase nítido em cima, forte embaixo.
-   pointer-events:none pra não bloquear cliques (footer-cta fica sob ela). */
+   pointer-events:none pra não bloquear cliques (footer fica sob ela). */
 .viewport-blur {
   position: fixed;
   left: 0;
@@ -1076,7 +965,6 @@ button:focus-visible {
 .js-reveal .case-section,
 .js-reveal .case-img-full,
 .js-reveal .next-case,
-.js-reveal .footer-cta,
 .js-reveal .footer-col,
 .js-reveal .footer-bigname,
 .js-reveal .footer-credit {

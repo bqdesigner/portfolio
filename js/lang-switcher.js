@@ -13,7 +13,6 @@
     'nav.freelas': 'Send freelance',
     'nav.embreve': 'Soon',
     'nav.curriculo': 'Resume',
-    'nav.talk': 'Talk - AI in the designer process',
     'nav.email.label': 'Have a project?',
     'skip': 'Skip to content',
     'footer.cta': "Let's work together?",

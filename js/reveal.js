@@ -26,7 +26,6 @@
     '.case-img-full',
     '.next-case',
     // footer (partial, compartilhado)
-    '.footer-cta',
     '.footer-col',
     '.footer-bigname',
     '.footer-credit'
