@@ -18,7 +18,7 @@ Site vibecoded usando Claude Code + MCP do Figma, com foco em performance, acess
 
 - Dark/Light mode com persistência via `localStorage`
 - i18n PT/EN client-side (nav, footer e conteúdo de cases)
-- Hero com fundo animado **ColorBends** (shader WebGL via three) e escala consistente em qualquer aspect
+- Hero com fundo animado **DarkVeil** (shader WebGL via three) e escala consistente em qualquer aspect
 - **Scroll-motion do hero** na index — card encolhe de full-bleed até colapsar, com os cases subindo em sincronia (off em `prefers-reduced-motion`)
 - Cases responsivos com carrossel lateral e cards parallax em `position: sticky`
 - Typewriter animation com suporte a `prefers-reduced-motion`

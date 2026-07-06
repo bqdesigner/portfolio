@@ -11,7 +11,7 @@
   position: relative;
 }
 
-/* Camada WebGL (ColorBends) sobre a cor do card, atrás do conteúdo.
+/* Camada WebGL (DarkVeil) sobre a cor do card, atrás do conteúdo.
    Recortada no raio do card; não captura ponteiro (o listener fica no card). */
 .hero-bg {
   position: absolute;
@@ -868,7 +868,7 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
     background-color: var(--color-dark);
   }
 
-  /* Remove a camada WebGL (ColorBends) no mobile. */
+  /* Remove a camada WebGL (DarkVeil) no mobile. */
   .hero-bg {
     display: none;
   }
