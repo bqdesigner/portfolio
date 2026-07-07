@@ -1,4 +1,5 @@
-// Cursor customizado "Ver case" sobre as imagens dos cases (.card-img-case).
+// Cursor customizado "Ver case" sobre os cards dos cases (.card-img-case e
+// .card-desc-case).
 // Pílula glassmorphism que segue o mouse com follow suave; some/aparece com
 // fade + spring. Só em dispositivos com mouse fino (não toca em touch).
 // A cor (clara/escura) muda automaticamente conforme o brilho do pixel da
@@ -7,7 +8,7 @@
   if (!window.matchMedia ||
       !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
-  var cards = document.querySelectorAll('.card-img-case');
+  var cards = document.querySelectorAll('.card-img-case, .card-desc-case');
   if (!cards.length) return;
 
   var TEXT = { pt: 'Ver case', en: 'View case' };
@@ -71,6 +72,15 @@
     return lum > 140; // claro → cursor escuro
   }
 
+  // .card-desc-case não tem imagem: lê a cor de fundo sólida (via CSS, já com
+  // :hover aplicado) em vez de amostrar pixel.
+  function sampleBgDark(el) {
+    var m = getComputedStyle(el).backgroundColor.match(/\d+/g);
+    if (!m) return false;
+    var lum = 0.2126 * m[0] + 0.7152 * m[1] + 0.0722 * m[2];
+    return lum > 140;
+  }
+
   var hoverImg = null, lastX = 0, lastY = 0, raf = null;
   document.addEventListener('mousemove', function (e) {
     lastX = e.clientX;
@@ -91,6 +101,7 @@
         hoverImg = img;
         cursor.classList.add('is-visible');
         if (img) cursor.classList.toggle('is-dark', sampleDark(img));
+        else cursor.classList.toggle('is-dark', sampleBgDark(card));
       });
       card.addEventListener('mouseleave', function () {
         hoverImg = null;
