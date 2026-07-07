@@ -35,7 +35,7 @@
     'about.exp.periodo': 'Period',
     'about.cv': 'Download my CV',
     'about.p1': '12 years of experience in Design, the last 10 dedicated to UX and digital product. Stints at CNN Brasil, Rakuten, Net NOW, Dasa, and Fretebras — contexts ranging from early stages, funded startups, and large companies. Currently Senior Product Designer at Stone, focused on product and AI.',
-    'about.p2': 'Specializing in high-complexity operational products — logistics platforms, management tools, field apps, and financial systems. Moving between strategic vision and detailed execution: from discovery and product metrics to visual craft and Design System.',
+    'about.p2': 'Specialist in high-complexity products — Banking, fintech, logistics, healthcare, streaming, crypto and more. I move between strategy and execution, from discovery to product in production, with excellence in craft.',
     'about.p3': '"I believe the best design delivered is the one that solves users\' needs and the business challenges."',
     'about.job1': 'Stone',
     'about.job1.year': '2025/Current',

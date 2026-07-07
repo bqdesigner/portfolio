@@ -14,8 +14,8 @@
     '.hero-title',
     '.hero-sub',
     '.section-label',
-    '.cases > .case-row',
     '.logo-marquee',
+    '.about-photo-card',
     '.about-me-left > *',
     '.experience-list > *',
     // cases

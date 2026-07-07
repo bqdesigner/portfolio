@@ -381,8 +381,7 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
 /* ===== CASE ROW (desc-case + img-case lado a lado, proporção do Figma) ===== */
 /* Larguras em % (390/1408 e resto) preservam a proporção. A altura vem do
    aspect-ratio do .card-img-case (não do row) — assim a imagem com height:100%
-   tem uma altura definida pra ser cortada, sem o row crescer pra caber a imagem.
-   Rows alternam o lado via --reverse. */
+   tem uma altura definida pra ser cortada, sem o row crescer pra caber a imagem. */
 .case-row {
   display: flex;
   gap: 8px;
@@ -390,9 +389,15 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
   text-decoration: none;
 }
 
-.case-row--reverse {
-  flex-direction: row-reverse;
-}
+/* Empilhamento por scroll: o 1º case gruda a 16px do topo; os seguintes
+   grudam 32px abaixo do anterior (z-index crescente pra ficar por cima ao
+   passar por cima do de trás). Ao empilhar o último, a pilha acaba e o
+   scroll segue normal pro about-me — comportamento nativo do sticky, sem JS. */
+.cases > .case-row:nth-child(1) { position: sticky; top: 16px; z-index: 1; }
+.cases > .case-row:nth-child(2) { position: sticky; top: 48px; z-index: 2; }
+.cases > .case-row:nth-child(3) { position: sticky; top: 80px; z-index: 3; }
+.cases > .case-row:nth-child(4) { position: sticky; top: 112px; z-index: 4; }
+.cases > .case-row:nth-child(5) { position: sticky; top: 144px; z-index: 5; }
 
 /* ===== DESC CARD ===== */
 .card-desc-case {
@@ -535,7 +540,9 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
 /* ===== CURSOR "VER CASE" (sobre as imagens dos cases) ===== */
 /* Esconde o cursor nativo só quando o cursor custom está ativo (classe via JS) */
 .case-cursor-on .card-img-case,
-.case-cursor-on .card-img-case * {
+.case-cursor-on .card-img-case *,
+.case-cursor-on .card-desc-case,
+.case-cursor-on .card-desc-case * {
   cursor: none;
 }
 
@@ -604,21 +611,43 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
   padding: 16px 16px 0;
 }
 
+/* Foto em destaque: card retrato que estica na altura da linha (grammar dos
+   cards de case: raio 8, imagem cobrindo). A imagem tem 118% de altura e é
+   deslocada por js/about-parallax.js (translate3d) num drift sutil de scroll —
+   com prefers-reduced-motion o JS não roda e a foto fica estática. */
+.about-photo-card {
+  position: relative;
+  width: 380px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--color-low);
+}
+
+.about-photo-card img {
+  position: absolute;
+  left: 0;
+  top: -9%;
+  width: 100%;
+  height: 118%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+/* Entrada da foto: fade + settle de escala (em vez do translateY padrão do
+   reveal) — mesma curva/duração do sistema. .reveal-in (reveal.js) zera. */
+.js-reveal .about-photo-card {
+  opacity: 0;
+  transform: scale(1.045);
+  transition: opacity 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
 .about-quote {
-  display: flex;
-  align-items: center;
   margin-top: 28px;
   padding-top: 20px;
   border-top: 1px solid var(--color-low);
-}
-
-.about-quote-photo {
-  flex-shrink: 0;
-  width: 96px;
-  height: 96px;
-  margin-right: 16px;
-  border-radius: 16px;
-  object-fit: cover;
 }
 
 .about-quote-text {
@@ -636,7 +665,7 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
   gap: 48px;
   border: 1px solid var(--color-low);
   border-radius: 8px;
-  padding: 32px;
+  padding: 16px;
 }
 
 .about-me-left {
@@ -659,6 +688,22 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
 
 .about-me-right .case-section-title {
   margin-bottom: 0;
+}
+
+/* Tablet: 3 colunas não cabem — experiência desce em largura total,
+   foto + texto seguem lado a lado. */
+@media (max-width: 1180px) and (min-width: 768px) {
+  .about-me-inner {
+    flex-wrap: wrap;
+  }
+
+  .about-photo-card {
+    width: 320px;
+  }
+
+  .about-me-right {
+    width: 100%;
+  }
 }
 
 .experience-list {
@@ -968,14 +1013,10 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
     max-width: 100%;
   }
 
-  .about-quote {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .about-quote-photo {
-    margin-right: 0;
-    margin-bottom: 16px;
+  /* Foto vira banner retrato full-width no topo do card */
+  .about-photo-card {
+    width: 100%;
+    aspect-ratio: 4 / 5;
   }
 
   .about-me-right {
@@ -1008,8 +1049,8 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
 
   /* Cada case ocupa 90% da largura (o próximo fica espiando) e 90% da altura da
      viewport. Empilha desc em cima, img embaixo (inclusive nos rows --reverse). */
-  .case-row,
-  .case-row--reverse {
+  .case-row {
+    position: static;
     flex-direction: column;
     flex: 0 0 90%;
     width: 90%;
@@ -1044,12 +1085,6 @@ body:has(.mobile-overlay--open).page-index .logo svg rect {
     height: calc((80vh - 8px) / 2);
     min-height: 0;
     aspect-ratio: auto;
-  }
-
-  /* Cases já entram visíveis no carrossel horizontal (sem fade de reveal) */
-  .js-reveal .cases > .case-row {
-    opacity: 1;
-    transform: none;
   }
 
   /* Screenshots (1/2/5): ancora no topo-esquerda com 40px de respiro; a imagem
