@@ -142,9 +142,19 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className={styles.bigName} aria-hidden="true">
+      <div className={styles.bigName} aria-hidden="true" id="bqBigName">
         <span>BQDESIGNER</span><span className={styles.slash}>/</span>
       </div>
+      {/* Mesmo fitBigName do site (js/loader.js), como script inline vanilla:
+          executa no parse do HTML, sem depender de hydration do React.
+          O calc() do CSS é só baseline anti-flash até este fit rodar. */}
+      <script dangerouslySetInnerHTML={{ __html: `(function(){
+var el=document.getElementById('bqBigName');if(!el)return;
+function fit(){var cs=getComputedStyle(el);var pad=parseFloat(cs.paddingLeft)+parseFloat(cs.paddingRight);var avail=el.clientWidth-pad;if(avail<=0)return;el.style.fontSize='100px';var w=0;for(var i=0;i<el.children.length;i++)w+=el.children[i].getBoundingClientRect().width;if(w<=0)return;el.style.fontSize=Math.floor(100*avail/w*0.98)+'px';}
+fit();
+if(document.fonts){if(document.fonts.ready)document.fonts.ready.then(fit);if(document.fonts.addEventListener)document.fonts.addEventListener('loadingdone',fit);}
+var raf;window.addEventListener('resize',function(){if(raf)cancelAnimationFrame(raf);raf=requestAnimationFrame(fit);});
+})();` }} />
       <div className={styles.credit}>
         <a href="#" className={styles.backToTop} onClick={scrollTop} aria-label="Voltar ao topo">
           <svg width="15" height="10" viewBox="0 0 14.8333 9.5" fill="none" xmlns="http://www.w3.org/2000/svg">
