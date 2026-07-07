@@ -109,7 +109,11 @@
   padding: 64px 0;
   font-family: var(--font);
   font-weight: 500;
-  font-size: 100px;
+  /* Full-width por CSS puro: "BQDESIGNER/" em DM Sans 500 (-0.05em) mede
+     ~5.55px de largura por 1px de font-size (medido no computed style);
+     /5.7 ocupa ~97% da área útil (100vw menos o padding lateral de 101px
+     do footer). Sem JS = não depende de fonts.ready nem de hydration. */
+  font-size: calc((100vw - 202px) / 5.7);
   line-height: 1;
   letter-spacing: -0.05em;
   text-transform: uppercase;
@@ -221,5 +225,8 @@
   .grid {
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+  .bigName {
+    font-size: calc((100vw - 48px) / 5.7);
   }
 }

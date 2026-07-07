@@ -12,7 +12,6 @@ const ArrowOut = () => (
 const CREDIT_TEXT = 'Design and Develop by Brunão — 2026 ©';
 
 export default function Footer() {
-  const bigRef = useRef(null);
   const creditRef = useRef(null);
 
   useEffect(() => {
@@ -71,37 +70,6 @@ export default function Footer() {
     return () => {
       observer.disconnect();
       timers.forEach(clearTimeout);
-    };
-  }, []);
-
-  useEffect(() => {
-    const el = bigRef.current;
-    if (!el) return;
-    let raf;
-    function fit() {
-      const cs = getComputedStyle(el);
-      const pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
-      const avail = el.clientWidth - pad;
-      if (avail <= 0) return;
-      el.style.fontSize = '100px';
-      let contentW = 0;
-      for (const child of el.children) contentW += child.getBoundingClientRect().width;
-      if (contentW <= 0) return;
-      el.style.fontSize = Math.floor(100 * avail / contentW * 0.98) + 'px';
-    }
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(fit);
-    } else {
-      fit();
-    }
-    function onResize() {
-      if (raf) cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(fit);
-    }
-    window.addEventListener('resize', onResize);
-    return () => {
-      window.removeEventListener('resize', onResize);
-      if (raf) cancelAnimationFrame(raf);
     };
   }, []);
 
@@ -174,7 +142,7 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className={styles.bigName} aria-hidden="true" ref={bigRef}>
+      <div className={styles.bigName} aria-hidden="true">
         <span>BQDESIGNER</span><span className={styles.slash}>/</span>
       </div>
       <div className={styles.credit}>
